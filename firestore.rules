@@ -1,0 +1,361 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /userpersonaldata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userschooldata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /classsubjecttopicdata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /classgradesubjectdata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /strengthclassgradesubjectdata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /weaknessclassgradesubjectdata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userregistrationprocessstatusdata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userquestionadded/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /calldata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /callrecords/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /usercallingprofiledata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /notificationtokendata/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /questionaddedrequestsent/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /superuserresponseonquestionadded/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /allnotificationsofuser/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /callingresponsetosuperuserquestionadded/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /callingnotificationtotest/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /useranswerposted/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /notificationtest/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answercomments/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answersubcomments/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answercommentslikedetails/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answersubcommentslikedetails/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /questionliked/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /questionsaved/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /questionbookmarked/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /questionanswered/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /questiontoughness/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /questionexamlikelyhood/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /questionreport/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answerliked/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answersaved/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answerbookmarked/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answerreport/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answeraskreference/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answernotification/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /questionnotification/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /commentnotification/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userenvolvedinquestion/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userenvolvedinanswer/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /allnotifications/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_feeds/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_feeds_comments/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_feeds_reply/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_comments_reactions_details/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_reply_reactions_details/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /eventdatatest/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_event_comments/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_events_reply/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_event_reply_reactions_details/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm__event_comments_reactions_details/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_feeds_saved/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_event_likes_details/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /sm_event_reactions_details/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /eventnotifications/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /events_joined/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /messages/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /messages/{ID}/SocialMediaChat/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+     match /allchatnotifications/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /groups/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /groups/{subID}/SocialMediaChat/{ID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /blogdatatest/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /eventnotifications/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /podcastdata/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userAchievements/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userconnections/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userprivacy/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /audiovideosolutionfeedback/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /calllogs/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userlogs/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /answervote/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /test/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /bucketB/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /notificationforbucketB/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /interactionscore/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /creditpointsdetails/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /useruploads/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /project_ratings/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /business_ideas/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /businessideas_ratings/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /school_ranking/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /timetable_joined/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userSectionlogs/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userSectionlogs/{subID}/qalogs/{qaID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userSectionlogs/{subID}/sociallogs/{qaID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /profilevisitedlogs/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /userSectionlogs/{subID}/searchedfriendlogs/{qaID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /timetablenotifications/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+    match /story_post/{subID} {
+    allow read: if request.auth != null;
+    allow write: if request.auth != null;
+    }
+  }
+ }

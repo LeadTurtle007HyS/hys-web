@@ -1,0 +1,601 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "allnotifications",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "receiverid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "allnotificationsofuser",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "receiverid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "answerbookmarked",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "topic",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "answercomments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "answerid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "answercomments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "answersaved",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "topic",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "answersubcomments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "answerid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "commentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "answersubcomments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "answerid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "classsubjecttopicdata",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "board",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "grade",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "classsubjecttopicdata",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "board",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "id",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "classsubjecttopicdata",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "grade",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "subject",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "id",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "messages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "uid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "profilevisitedlogs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "`  `",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "profilevisitedlogs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "questionbookmarked",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "topic",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "questionexamlikelyhood",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "questionexamlikelyhood",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "typelevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "questionliked",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "likedtype",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "questionliked",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "questionsaved",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "topic",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "questionsaved",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        },
+        {
+          "fieldPath": "topic",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "questiontoughness",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "questiontoughness",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "typelevel",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "sm_events_reply",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "feedid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "sm_feeds_comments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "feedid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "sm_feeds_reply",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "commentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "feedid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "sm_feeds_reply",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "feedid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userAchievements",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "useranswerposted",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userconnections",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "otheruserid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userconnections",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userenvolvedinanswer",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "answerid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userenvolvedinquestion",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "questionid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userlogs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userprivacy",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userquestionadded",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "subject",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userquestionadded",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "useruploads",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "uploadtype",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "userid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "comparedate",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

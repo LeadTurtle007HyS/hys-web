@@ -1,0 +1,102 @@
+const functions = require("firebase-functions");
+const  admin = require("firebase-admin");
+
+admin.initializeApp(functions.config().firebase);
+var fcm = admin.messaging();
+
+exports.notifySuperUser_QuestionPosted = functions.firestore.document("questionaddedrequestsent/{ID}").onCreate( async (snapshot)=>{
+
+    const message = snapshot.data();
+
+    const payload = {
+      notification:{
+          title: `HyS | ${message.sendername} having a doubt.`,
+          body:message.message,
+          clickAction:'FLUTTER_NOTIFICATION_CLICK',
+          sound:"default"
+      },
+      data:{
+        sendername:message.sendername,
+        senderid:message.senderid,
+        receivername:message.receivername,
+        receiverid:message.receiverid,
+        message:message.message,
+        notificationid:message.notificationid,
+        questionid:message.questionid,
+        response:message.response
+      }
+  };
+  
+         const token = message.token;
+    
+         return fcm.sendToDevice(token,payload);
+});
+
+
+
+exports.notifyRequester_superuserResponse = functions.firestore.document("superuserresponseonquestionadded/{ID}").onCreate( async (snapshot)=>{
+
+    const message = snapshot.data();
+
+    const payload = {
+      notification:{
+          title: `HyS | ${message.sendername} is ready to help you.`,
+          body:message.message,
+          clickAction:'FLUTTER_NOTIFICATION_CLICK',
+          sound:"default"
+      },
+      data:{
+        sendername:message.sendername,
+        senderid:message.senderid,
+        receivername:message.receivername,
+        receiverid:message.receiverid,
+        message:message.message,
+        notificationid:message.notificationid,
+        questionid:message.questionid,
+        response:message.response
+      }
+  };
+  
+         const token = message.token;
+    
+         return fcm.sendToDevice(token,payload);
+});
+
+
+
+exports.notifyCallingRequester_toSuperuser = functions.firestore.document("callingresponsetosuperuserquestionadded/{ID}").onCreate( async (snapshot)=>{
+
+  const message = snapshot.data();
+
+  const payload = {
+    notification:{
+        title: `HyS | ${message.sendername} Calling...`,
+        body:message.message,
+        clickAction:'FLUTTER_NOTIFICATION_CLICK',
+        sound:"default"
+    },
+    data:{
+      sendername:message.sendername,
+      senderid:message.senderid,
+      receivername:message.receivername,
+      receiverid:message.receiverid,
+      message:message.message,
+      notificationid:message.notificationid,
+      questionid:message.questionid,
+      channelid:message.channelid
+    }
+};
+
+       const token = message.token;
+  
+       return fcm.sendToDevice(token,payload);
+});
+
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+//
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+//   functions.logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
