@@ -196,6 +196,24 @@ class _OverViewState extends State<OverView> {
   DataSnapshot? countData;
   QuerySnapshot? connectionStatus;
 
+  List<GlobalKey>? KeyList;
+  double? _x, _y;
+  void _getOffset(GlobalKey key) {
+    RenderBox renderBox = key.currentContext?.findRenderObject() as RenderBox;
+
+    Size size = renderBox.size; // or _widgetKey.currentContext?.size
+    print('Size: ${size.width}, ${size.height}');
+
+    Offset offset = renderBox.localToGlobal(Offset.zero);
+    print('Offset: ${offset.dx}, ${offset.dy}');
+    print(
+        'Position: ${(offset.dx + size.width) / 2}, ${(offset.dy + size.height) / 2}');
+    setState(() {
+      _x = offset.dx;
+      _y = offset.dy;
+    });
+  }
+
   void initState() {
     userDataDB = Hive.box<dynamic>('userdata');
     questionlikedLocalDB = Hive.box<dynamic>('questionliked');
@@ -306,6 +324,8 @@ class _OverViewState extends State<OverView> {
 
     setState(() {
       allQuestionsData = allQuestionsLocalDB!.get("data");
+      KeyList = List.generate(
+          allQuestionsData.length, (index) => GlobalObjectKey(index));
       for (int i = 0; i < allQuestionsData.length; i++) {
         allAnswersQIDwisebool.add(false);
         _likecountbool.add(false);
@@ -1114,6 +1134,7 @@ class _OverViewState extends State<OverView> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
+          key: KeyList![index],
           width: 500,
           padding: EdgeInsets.all(10),
           margin: EdgeInsets.only(top: 20),
@@ -1590,6 +1611,7 @@ class _OverViewState extends State<OverView> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
+                key: KeyList![index],
                 width: 500,
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.only(top: 20),
@@ -2268,6 +2290,7 @@ class _OverViewState extends State<OverView> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
+                key: KeyList![index],
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.only(top: 20),
                 decoration: BoxDecoration(
@@ -2935,6 +2958,7 @@ class _OverViewState extends State<OverView> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
+          key: KeyList![index],
           padding: EdgeInsets.all(10),
           margin: EdgeInsets.all(20),
           decoration: BoxDecoration(
