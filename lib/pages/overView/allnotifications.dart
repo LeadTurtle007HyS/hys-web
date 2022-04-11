@@ -45,7 +45,7 @@ class _AllNotificationsState extends State<AllNotifications>
   Future<void> _get_allNotifications() async {
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_all_notifications/$_currentUserId'),
+          'https://hys-api.herokuapp.com/web_get_all_notifications/$_currentUserId'),
     );
 
     print("get_all_notifications: ${response.statusCode}");
@@ -62,7 +62,7 @@ class _AllNotificationsState extends State<AllNotifications>
 
   Future<void> _get_all_questions_posted() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_questions_posted'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_questions_posted'),
     );
     print("get_all_questions_posted: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -74,7 +74,7 @@ class _AllNotificationsState extends State<AllNotifications>
 
   Future<void> _get_all_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_posts'),
     );
 
     print("get_all_sm_posts: ${response.statusCode}");

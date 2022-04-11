@@ -417,7 +417,8 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_user_data() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_user_data/${this.user_id}'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_get_user_data/${this.user_id}'),
     );
 
     print("get_user_data: ${response.statusCode}");
@@ -463,7 +464,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _get_user_languagePreference_Data() async {
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_preferred_languages_data/${this.user_id}'),
+          'https://hys-api.herokuapp.com/web_get_user_preferred_languages_data/${this.user_id}'),
     );
 
     print("get_user_preferred_languages_data: ${response.statusCode}");
@@ -480,7 +481,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _get_user_strength_Data() async {
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_strength_data/${this.user_id}'),
+          'https://hys-api.herokuapp.com/web_get_user_strength_data/${this.user_id}'),
     );
 
     print("get_user_preferred_languages_data: ${response.statusCode}");
@@ -506,7 +507,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _get_user_weakness_Data() async {
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_weakness_data/${this.user_id}'),
+          'https://hys-api.herokuapp.com/web_get_user_weakness_data/${this.user_id}'),
     );
 
     print("get_user_preferred_languages_data: ${response.statusCode}");
@@ -533,7 +534,7 @@ class _UserProfileState extends State<UserProfile>
     userQuestionsData = [];
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_questions_posted/${this.user_id}'),
+          'https://hys-api.herokuapp.com/web_get_user_questions_posted/${this.user_id}'),
     );
     print("get_user_questions_posted: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -556,7 +557,7 @@ class _UserProfileState extends State<UserProfile>
     indexAnswers.clear();
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_answers_posted/${this.user_id}'),
+          'https://hys-api.herokuapp.com/web_get_user_answers_posted/${this.user_id}'),
     );
     print("get_user_answer_posted: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -586,7 +587,7 @@ class _UserProfileState extends State<UserProfile>
     allQuestionsData = [];
 
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_questions_posted'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_questions_posted'),
     );
     print("get_all_questions_posted: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -598,7 +599,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_answers_posted() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_answer_posted'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_answer_posted'),
     );
     print("get_all_answer_posted: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -610,7 +611,8 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_users_data_for_tagging() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_users_data_for_tagging'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_get_all_users_data_for_tagging'),
     );
 
     print("get_all_users_data_for_taggigng: ${response.statusCode}");
@@ -639,7 +641,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_posts'),
     );
 
     print("get_all_sm_posts: ${response.statusCode}");
@@ -659,7 +661,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_attached_images() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_images'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_images'),
     );
 
     print("get_all_sm_images: ${response.statusCode}");
@@ -672,7 +674,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_attached_videos() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_videos'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_videos'),
     );
 
     print("get_all_sm_videos: ${response.statusCode}");
@@ -685,7 +687,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_tagged_users() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_usertagged'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_usertagged'),
     );
 
     print("get_all_sm_usertagged: ${response.statusCode}");
@@ -698,7 +700,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_mood_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_mood_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_mood_posts'),
     );
 
     print("get_all_sm_mood_posts: ${response.statusCode}");
@@ -719,7 +721,7 @@ class _UserProfileState extends State<UserProfile>
     commentReplyeCount = [];
 
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_comment_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_comment_posts'),
     );
 
     print("get_all_sm_comment_posts: ${response.statusCode}");
@@ -772,7 +774,7 @@ class _UserProfileState extends State<UserProfile>
     isShowAllReply = [];
 
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_reply_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_reply_posts'),
     );
 
     print("get_all_sm_reply_posts: ${response.statusCode}");
@@ -816,7 +818,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_cause_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_cause_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_cause_posts'),
     );
 
     print("get_all_sm_cause_posts: ${response.statusCode}");
@@ -829,7 +831,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_bideas_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_bideas_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_bideas_posts'),
     );
 
     print("get_all_sm_bideas_posts: ${response.statusCode}");
@@ -847,7 +849,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_project_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_project_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_project_posts'),
     );
 
     print("get_all_sm_project_posts: ${response.statusCode}");
@@ -873,7 +875,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _get_user_uploads() async {
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_uploads/${this.user_id}'),
+          'https://hys-api.herokuapp.com/web_get_user_uploads/${this.user_id}'),
     );
 
     print("get_user_uploads: ${response.statusCode}");
@@ -908,7 +910,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_upload_files_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_user_upload_files'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_user_upload_files'),
     );
 
     print("get_user_upload_files: ${response.statusCode}");
@@ -926,7 +928,7 @@ class _UserProfileState extends State<UserProfile>
     achWiseScoreData = [];
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_achievement_details/${this.user_id}'),
+          'https://hys-api.herokuapp.com/web_get_user_achievement_details/${this.user_id}'),
     );
 
     print("get_user_achievement_details: ${response.statusCode}");
@@ -941,7 +943,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _get_user_scorecard_details() async {
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_scorecard_details/${this.user_id}'),
+          'https://hys-api.herokuapp.com/web_get_user_scorecard_details/${this.user_id}'),
     );
 
     print("get_user_scorecard_details: ${response.statusCode}");
@@ -957,7 +959,7 @@ class _UserProfileState extends State<UserProfile>
     userPrivacy = [];
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_privacy/${this.user_id}'),
+          'https://hys-api.herokuapp.com/web_get_user_privacy/${this.user_id}'),
     );
 
     print("get_user_privacy: ${response.statusCode}");
@@ -3313,7 +3315,7 @@ class _UserProfileState extends State<UserProfile>
     for (int d = 0; d < finalSelectedStrengthSubjects.length; d++) {
       for (int e = 0; e < finalSelectedStrengthTopics[d].length; e++) {
         final http.Response response = await http.post(
-          Uri.parse('https://hys-api.herokuapp.com/add_user_strength_data'),
+          Uri.parse('https://hys-api.herokuapp.com/web_add_user_strength_data'),
           headers: <String, String>{
             'Content-Type': 'application/json',
             "Access-Control_Allow_Origin": "*"
@@ -9704,7 +9706,7 @@ class _UserProfileState extends State<UserProfile>
       String user_id, String question_id, String examlikelyhood_level) async {
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/add_questions_examlikelyhood_details'),
+          'https://hys-api.herokuapp.com/web_add_questions_examlikelyhood_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -9722,7 +9724,7 @@ class _UserProfileState extends State<UserProfile>
       String user_id, String question_id) async {
     final http.Response response = await http.delete(
       Uri.parse(
-          'https://hys-api.herokuapp.com/delete_questions_examlikelyhood_details'),
+          'https://hys-api.herokuapp.com/web_delete_questions_examlikelyhood_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -9737,7 +9739,7 @@ class _UserProfileState extends State<UserProfile>
       String user_id, String question_id, String toughness_level) async {
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/add_questions_toughness_details'),
+          'https://hys-api.herokuapp.com/web_add_questions_toughness_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -9755,7 +9757,7 @@ class _UserProfileState extends State<UserProfile>
       String user_id, String question_id) async {
     final http.Response response = await http.delete(
       Uri.parse(
-          'https://hys-api.herokuapp.com/delete_questions_toughness_details'),
+          'https://hys-api.herokuapp.com/web_delete_questions_toughness_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -9806,7 +9808,7 @@ class _UserProfileState extends State<UserProfile>
     print("impression: ${impression.toString()}");
     final http.Response response = await http.put(
       Uri.parse(
-          'https://hys-api.herokuapp.com/update_counts_in_question_details'),
+          'https://hys-api.herokuapp.com/web_update_counts_in_question_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -10114,7 +10116,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _add_questions_like_details(
       String user_id, String question_id, String like_type) async {
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_questions_like_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_questions_like_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -10131,7 +10133,8 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _delete_questions_like_details(
       String user_id, String question_id) async {
     final http.Response response = await http.delete(
-      Uri.parse('https://hys-api.herokuapp.com/delete_questions_like_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_delete_questions_like_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"

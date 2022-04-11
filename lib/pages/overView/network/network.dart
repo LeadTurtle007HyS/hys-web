@@ -333,7 +333,8 @@ class _NetworkState extends State<Network> {
 
   Future<void> _get_all_users_data_for_tagging() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_users_data_for_tagging'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_get_all_users_data_for_tagging'),
     );
 
     print("get_all_users_data_for_taggigng: ${response.statusCode}");
@@ -385,7 +386,7 @@ class _NetworkState extends State<Network> {
   Future<void> _get_all_post_like_details() async {
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_sm_like_post_details/${_currentUserId}'),
+          'https://hys-api.herokuapp.com/web_get_sm_like_post_details/${_currentUserId}'),
     );
 
     print("get_sm_like_post_details: ${response.statusCode}");
@@ -405,7 +406,7 @@ class _NetworkState extends State<Network> {
 
   Future<void> _get_all_attached_images() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_images'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_images'),
     );
 
     print("get_all_sm_images: ${response.statusCode}");
@@ -418,7 +419,7 @@ class _NetworkState extends State<Network> {
 
   Future<void> _get_all_attached_videos() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_videos'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_videos'),
     );
 
     print("get_all_sm_videos: ${response.statusCode}");
@@ -431,7 +432,7 @@ class _NetworkState extends State<Network> {
 
   Future<void> _get_all_tagged_users() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_usertagged'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_usertagged'),
     );
 
     print("get_all_sm_usertagged: ${response.statusCode}");
@@ -471,7 +472,7 @@ class _NetworkState extends State<Network> {
     commentReplyeCount = [];
 
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_comment_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_comment_posts'),
     );
 
     print("get_all_sm_comment_posts: ${response.statusCode}");
@@ -524,7 +525,7 @@ class _NetworkState extends State<Network> {
     isShowAllReply = [];
 
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_reply_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_reply_posts'),
     );
 
     print("get_all_sm_reply_posts: ${response.statusCode}");
@@ -11713,7 +11714,9 @@ class _NetworkState extends State<Network> {
                                                                       () async {
                                                                     if ((post !=
                                                                         "")) {
-                                                                          Dialogs.showLoadingDialog(context, _keyLoader);
+                                                                      Dialogs.showLoadingDialog(
+                                                                          context,
+                                                                          _keyLoader);
                                                                       comparedate = DateFormat(
                                                                               'yyyyMMddkkmm')
                                                                           .format(
@@ -11969,7 +11972,12 @@ class _NetworkState extends State<Network> {
                                                                       selectedUserID =
                                                                           [];
                                                                     });
-                                                                    Navigator.of(_keyLoader.currentContext!, rootNavigator: true).pop();
+                                                                    Navigator.of(
+                                                                            _keyLoader
+                                                                                .currentContext!,
+                                                                            rootNavigator:
+                                                                                true)
+                                                                        .pop();
                                                                     Navigator.of(
                                                                             context)
                                                                         .pop();
@@ -12997,7 +13005,9 @@ class _NetworkState extends State<Network> {
                                                                               "") &&
                                                                           (title !=
                                                                               "")) {
-                                                                                Dialogs.showLoadingDialog(context, _keyLoader);
+                                                                        Dialogs.showLoadingDialog(
+                                                                            context,
+                                                                            _keyLoader);
                                                                         tagids
                                                                             .clear();
                                                                         print(
@@ -13219,7 +13229,10 @@ class _NetworkState extends State<Network> {
                                                                         selectedUserID =
                                                                             [];
                                                                       });
-                                                                      Navigator.of(_keyLoader.currentContext!, rootNavigator: true).pop();
+                                                                      Navigator.of(
+                                                                              _keyLoader.currentContext!,
+                                                                              rootNavigator: true)
+                                                                          .pop();
                                                                       Navigator.of(
                                                                               context)
                                                                           .pop();
@@ -14393,7 +14406,8 @@ class _NetworkState extends State<Network> {
                                                                                 video1URL = "";
                                                                                 video2URL = "";
                                                                                 selectedUserID = [];
-                                                                              });Navigator.of(_keyLoader.currentContext!, rootNavigator: true).pop();
+                                                                              });
+                                                                              Navigator.of(_keyLoader.currentContext!, rootNavigator: true).pop();
 
                                                                               Navigator.of(context).pop();
                                                                             },
@@ -15910,7 +15924,8 @@ class _NetworkState extends State<Network> {
                                                                             () async {
                                                                           if (uploadFilesURLList
                                                                               .isNotEmpty) {
-                                                                                Dialogs.showLoadingDialog(context, _keyLoader);
+                                                                            Dialogs.showLoadingDialog(context,
+                                                                                _keyLoader);
                                                                             String uploadID = "upd" +
                                                                                 _currentUserId +
                                                                                 comparedate;
@@ -16628,7 +16643,6 @@ class _NetworkState extends State<Network> {
                                                                             onTap:
                                                                                 () async {
                                                                               if (blogtitle == "") {
-
                                                                                 ElegantNotification.info(
                                                                                   title: "",
                                                                                   description: "Please write blog title.",
@@ -17393,7 +17407,8 @@ class _NetworkState extends State<Network> {
                                                   : Colors.grey[400])))),
                               onPressed: () async {
                                 if (sharecomment != "") {
-                                  Dialogs.showLoadingDialog(context, _keyLoader);
+                                  Dialogs.showLoadingDialog(
+                                      context, _keyLoader);
                                   comparedate = DateFormat('yyyyMMddkkmm')
                                       .format(DateTime.now());
                                   String postID =
@@ -17408,7 +17423,9 @@ class _NetworkState extends State<Network> {
                                     comparedate
                                   ]);
                                   _call_apis();
-                                  Navigator.of(_keyLoader.currentContext!, rootNavigator: true).pop();
+                                  Navigator.of(_keyLoader.currentContext!,
+                                          rootNavigator: true)
+                                      .pop();
                                   Navigator.of(context).pop();
                                 } else {
                                   ElegantNotification.error(
@@ -20831,7 +20848,8 @@ class _NetworkState extends State<Network> {
                                       InkWell(
                                         onTap: () async {
                                           if ((comment != "")) {
-                                            Dialogs.showLoadingDialog(context, _keyLoader);
+                                            Dialogs.showLoadingDialog(
+                                                context, _keyLoader);
                                             comparedate =
                                                 DateFormat('yyyyMMddkkmm')
                                                     .format(DateTime.now());
@@ -20966,7 +20984,10 @@ class _NetworkState extends State<Network> {
                                               selectedUserflag[k] = false;
                                             });
                                           }
-                                          Navigator.of(_keyLoader.currentContext!, rootNavigator: true).pop();
+                                          Navigator.of(
+                                                  _keyLoader.currentContext!,
+                                                  rootNavigator: true)
+                                              .pop();
                                           Navigator.of(context).pop();
                                         },
                                         child: Container(
@@ -21519,7 +21540,8 @@ class _NetworkState extends State<Network> {
                                       InkWell(
                                         onTap: () async {
                                           if ((reply != "")) {
-                                            Dialogs.showLoadingDialog(context, _keyLoader);
+                                            Dialogs.showLoadingDialog(
+                                                context, _keyLoader);
                                             comparedate =
                                                 DateFormat('yyyyMMddkkmm')
                                                     .format(DateTime.now());
@@ -21649,7 +21671,10 @@ class _NetworkState extends State<Network> {
                                               selectedUserflag[k] = false;
                                             });
                                           }
-                                          Navigator.of(_keyLoader.currentContext!, rootNavigator: true).pop();
+                                          Navigator.of(
+                                                  _keyLoader.currentContext!,
+                                                  rootNavigator: true)
+                                              .pop();
                                           Navigator.of(context).pop();
                                         },
                                         child: Container(

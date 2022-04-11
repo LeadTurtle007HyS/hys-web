@@ -149,7 +149,8 @@ class _SiteLayoutState extends State<SiteLayout> {
 
   Future<void> _get_userData() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_user_data/$_currentUserId'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_get_user_data/$_currentUserId'),
     );
 
     print("get_user_data: ${response.statusCode}");
@@ -199,7 +200,7 @@ class _SiteLayoutState extends State<SiteLayout> {
   Future<void> _get_user_languagePreference_Data() async {
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_user_preferred_languages_data/$_currentUserId'),
+          'https://hys-api.herokuapp.com/web_get_user_preferred_languages_data/$_currentUserId'),
     );
 
     print("get_user_preferred_languages_data: ${response.statusCode}");
@@ -214,7 +215,7 @@ class _SiteLayoutState extends State<SiteLayout> {
 
   Future<void> _get_all_questions_posted() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_questions_posted'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_questions_posted'),
     );
     print("get_all_questions_posted: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -228,7 +229,7 @@ class _SiteLayoutState extends State<SiteLayout> {
 
   Future<void> _get_all_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_posts'),
     );
 
     print("get_all_sm_posts: ${response.statusCode}");
@@ -241,7 +242,7 @@ class _SiteLayoutState extends State<SiteLayout> {
 
   Future<void> _get_all_mood_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_mood_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_mood_posts'),
     );
 
     print("get_all_sm_mood_posts: ${response.statusCode}");
@@ -254,7 +255,7 @@ class _SiteLayoutState extends State<SiteLayout> {
 
   Future<void> _get_all_cause_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_cause_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_cause_posts'),
     );
 
     print("get_all_sm_cause_posts: ${response.statusCode}");
@@ -267,7 +268,7 @@ class _SiteLayoutState extends State<SiteLayout> {
 
   Future<void> _get_all_bideas_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_bideas_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_bideas_posts'),
     );
 
     print("get_all_sm_bideas_posts: ${response.statusCode}");
@@ -280,7 +281,7 @@ class _SiteLayoutState extends State<SiteLayout> {
 
   Future<void> _get_all_project_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_project_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_project_posts'),
     );
 
     print("get_all_sm_project_posts: ${response.statusCode}");
@@ -293,7 +294,7 @@ class _SiteLayoutState extends State<SiteLayout> {
 
   Future<void> _get_all_blog_post_details() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_sm_blog_posts'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_blog_posts'),
     );
 
     print("get_all_sm_blog_posts: ${response.statusCode}");

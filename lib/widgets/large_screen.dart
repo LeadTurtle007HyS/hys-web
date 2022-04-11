@@ -1,6 +1,7 @@
 import 'package:HyS/pages/chat/ChatScreen.dart';
 import 'package:HyS/pages/chat/allChatScreen.dart';
 import 'package:HyS/pages/chat/groupChatScreen.dart';
+import 'package:HyS/pages/livebook_code/liveBookOpen.dart';
 import 'package:HyS/pages/overView/allnotifications.dart';
 import 'package:HyS/pages/overView/network/network.dart';
 import 'package:HyS/pages/overView/overview.dart';
@@ -50,18 +51,20 @@ class _LargeScreenState extends State<LargeScreen> {
                           [_currentUserId] ==
                       1
                   ? OverView()
-                  : countData!.value["app_bar_navigation"][_currentUserId][_currentUserId] ==
+                  : countData!.value["app_bar_navigation"][_currentUserId]
+                              [_currentUserId] ==
                           2
                       ? Network()
                       : countData!.value["app_bar_navigation"][_currentUserId]
                                   [_currentUserId] ==
                               3
-                          ? UserProfile(countData!.value["app_bar_navigation"]
-                              [_currentUserId]["userid"])
+                          ? LiveBookOpen()
                           : countData!.value["app_bar_navigation"]
                                       [_currentUserId][_currentUserId] ==
                                   4
-                              ? (countData!.value["chat"][_currentUserId]["index"] == 0) &&
+                              ? (countData!.value["chat"][_currentUserId]
+                                              ["index"] ==
+                                          0) &&
                                       (countData!.value["app_bar_navigation"]
                                               [_currentUserId][_currentUserId] !=
                                           5)

@@ -276,7 +276,8 @@ class _OverViewState extends State<OverView> {
 
   Future<void> _get_all_users_data_for_tagging() async {
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_users_data_for_tagging'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_get_all_users_data_for_tagging'),
     );
 
     print("get_all_users_data_for_taggigng: ${response.statusCode}");
@@ -317,9 +318,6 @@ class _OverViewState extends State<OverView> {
     likebutton = [];
     examlikelyhoodbutton = [];
     toughnessbutton = [];
-    likebuttonpopupremove = [];
-    examlikelyhoodbuttonpopupremove = [];
-    toughnessbuttonpopupremove = [];
     allAnswersQIDwisebool = [];
 
     setState(() {
@@ -356,7 +354,7 @@ class _OverViewState extends State<OverView> {
     upvoteCountAns = [];
     downVoteCountAns = [];
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_answer_posted'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_answer_posted'),
     );
     print("get_all_answer_posted: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -420,7 +418,7 @@ class _OverViewState extends State<OverView> {
     likeCountAnscmnt = [];
     replyCountAnscmnt = [];
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_answer_comments'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_answer_comments'),
     );
     print("get_all_answer_comments: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -481,7 +479,7 @@ class _OverViewState extends State<OverView> {
     likeCountAnsReply = [];
 
     final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/get_all_answer_reply'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_answer_reply'),
     );
     print("get_all_answer_reply: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -544,7 +542,7 @@ class _OverViewState extends State<OverView> {
 
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_question_saved_details/${_currentUserId}'),
+          'https://hys-api.herokuapp.com/web_get_question_saved_details/${_currentUserId}'),
     );
     print("get_question_saved_details: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -576,7 +574,7 @@ class _OverViewState extends State<OverView> {
 
     final http.Response response = await http.get(
       Uri.parse(
-          'https://hys-api.herokuapp.com/get_question_bookmarked_details/${_currentUserId}'),
+          'https://hys-api.herokuapp.com/web_get_question_bookmarked_details/${_currentUserId}'),
     );
     print("get_question_bookmarked_details: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
@@ -642,7 +640,7 @@ class _OverViewState extends State<OverView> {
     print("impression: ${impression.toString()}");
     final http.Response response = await http.put(
       Uri.parse(
-          'https://hys-api.herokuapp.com/update_counts_in_question_details'),
+          'https://hys-api.herokuapp.com/web_update_counts_in_question_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -1605,7 +1603,7 @@ class _OverViewState extends State<OverView> {
     String current_date = DateFormat.yMMMMd('en_US').format(tempDate);
     DateTime tempDate1 = DateTime.parse(
         allQuestionsData[i]["compare_date"].toString().substring(0, 8));
-    String current_date1 = DateFormat.yMMMMd('en_US').format(tempDate);
+    String current_date1 = DateFormat.yMMMMd('en_US').format(tempDate1);
     return i != -1
         ? Column(
             mainAxisSize: MainAxisSize.min,
@@ -3612,8 +3610,10 @@ class _OverViewState extends State<OverView> {
                                   });
                                 }
                                 ElegantNotification.success(
-                                    title: "Saved!",
-                                    description: "Post is saved successfully.");
+                                        title: "Saved!",
+                                        description:
+                                            "Post is saved successfully.")
+                                    .show(context);
                                 Navigator.of(context).pop();
                               } else if (allQuestionWiseSavedOrNot[i] == true) {
                                 bool check = await dataLoad
@@ -6939,7 +6939,7 @@ class _OverViewState extends State<OverView> {
   Future<void> _add_questions_like_details(
       String user_id, String question_id, String like_type) async {
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_questions_like_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_questions_like_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -6956,7 +6956,8 @@ class _OverViewState extends State<OverView> {
   Future<void> _delete_questions_like_details(
       String user_id, String question_id) async {
     final http.Response response = await http.delete(
-      Uri.parse('https://hys-api.herokuapp.com/delete_questions_like_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_delete_questions_like_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -8112,7 +8113,7 @@ class _OverViewState extends State<OverView> {
       String user_id, String question_id, String examlikelyhood_level) async {
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/add_questions_examlikelyhood_details'),
+          'https://hys-api.herokuapp.com/web_add_questions_examlikelyhood_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -8130,7 +8131,7 @@ class _OverViewState extends State<OverView> {
       String user_id, String question_id) async {
     final http.Response response = await http.delete(
       Uri.parse(
-          'https://hys-api.herokuapp.com/delete_questions_examlikelyhood_details'),
+          'https://hys-api.herokuapp.com/web_delete_questions_examlikelyhood_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -8145,7 +8146,7 @@ class _OverViewState extends State<OverView> {
       String user_id, String question_id, String toughness_level) async {
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/add_questions_toughness_details'),
+          'https://hys-api.herokuapp.com/web_add_questions_toughness_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -8163,7 +8164,7 @@ class _OverViewState extends State<OverView> {
       String user_id, String question_id) async {
     final http.Response response = await http.delete(
       Uri.parse(
-          'https://hys-api.herokuapp.com/delete_questions_toughness_details'),
+          'https://hys-api.herokuapp.com/web_delete_questions_toughness_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"

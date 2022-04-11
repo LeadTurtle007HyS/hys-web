@@ -5,7 +5,7 @@ class DataLoadCRUD {
   Future<bool> postUserQuestionData(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_user_question_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_user_question_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -54,7 +54,8 @@ class DataLoadCRUD {
   Future<void> postUsertaggedInQuestionData(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_users_tagged_in_question'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_add_users_tagged_in_question'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -72,7 +73,7 @@ class DataLoadCRUD {
     print(data);
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/post_answer_on_question_details'),
+          'https://hys-api.herokuapp.com/web_post_answer_on_question_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -109,7 +110,7 @@ class DataLoadCRUD {
     print(data);
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/update_counts_in_answer_details'),
+          'https://hys-api.herokuapp.com/web_update_counts_in_answer_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -137,7 +138,7 @@ class DataLoadCRUD {
     print(data);
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/update_counts_in_answer_comment_details'),
+          'https://hys-api.herokuapp.com/web_update_counts_in_answer_comment_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -163,7 +164,7 @@ class DataLoadCRUD {
     print(data);
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/update_counts_in_answer_reply_details'),
+          'https://hys-api.herokuapp.com/web_update_counts_in_answer_reply_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -187,7 +188,7 @@ class DataLoadCRUD {
   Future<void> postUsertaggedInAnswerData(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_users_tagged_in_answer'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_users_tagged_in_answer'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -204,7 +205,7 @@ class DataLoadCRUD {
   Future<bool> postUserAnswerCommentData(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_users_answer_comment'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_users_answer_comment'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -236,7 +237,7 @@ class DataLoadCRUD {
   Future<bool> postUserAnswerReplyData(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_users_answer_reply'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_users_answer_reply'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -264,7 +265,7 @@ class DataLoadCRUD {
   Future<bool> addQuestionSaved(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_question_saved_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_question_saved_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -286,7 +287,8 @@ class DataLoadCRUD {
   Future<bool> deleteQuestionSaved(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/delete_question_saved_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_delete_question_saved_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -306,7 +308,7 @@ class DataLoadCRUD {
     print(data);
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/add_question_bookmarked_details'),
+          'https://hys-api.herokuapp.com/web_add_question_bookmarked_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -329,7 +331,7 @@ class DataLoadCRUD {
     print(data);
     final http.Response response = await http.post(
       Uri.parse(
-          'https://hys-api.herokuapp.com/delete_question_bookmarked_details'),
+          'https://hys-api.herokuapp.com/web_delete_question_bookmarked_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"

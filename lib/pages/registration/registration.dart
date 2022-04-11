@@ -4411,7 +4411,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
 
   Future<void> _post_newUserID() async {
     final http.Response response = await http.put(
-      Uri.parse('https://hys-api.herokuapp.com/add_new_user'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_new_user'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -4429,7 +4429,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
 
   Future<void> _post_userPersonalData() async {
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_user_personal_data'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_user_personal_data'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -4464,7 +4464,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
 
   Future<void> _post_userSchoolData() async {
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_user_school_data'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_user_school_data'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -4496,7 +4496,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
     for (int d = 0; d < finalSelectedStrengthSubjects.length; d++) {
       for (int e = 0; e < finalSelectedStrengthTopics[d].length; e++) {
         final http.Response response = await http.post(
-          Uri.parse('https://hys-api.herokuapp.com/add_user_strength_data'),
+          Uri.parse('https://hys-api.herokuapp.com/web_add_user_strength_data'),
           headers: <String, String>{
             'Content-Type': 'application/json',
             "Access-Control_Allow_Origin": "*"
@@ -4518,7 +4518,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
     for (int d = 0; d < finalSelectedWeaknessSubjects.length; d++) {
       for (int e = 0; e < finalSelectedWeaknessTopics[d].length; e++) {
         final http.Response response = await http.post(
-          Uri.parse('https://hys-api.herokuapp.com/add_user_weakness_data'),
+          Uri.parse('https://hys-api.herokuapp.com/web_add_user_weakness_data'),
           headers: <String, String>{
             'Content-Type': 'application/json',
             "Access-Control_Allow_Origin": "*"
@@ -4541,7 +4541,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
     for (int d = 0; d < preferredLanguage.length; d++) {
       final http.Response response = await http.post(
         Uri.parse(
-            'https://hys-api.herokuapp.com/add_user_preferred_language_data'),
+            'https://hys-api.herokuapp.com/web_add_user_preferred_language_data'),
         headers: <String, String>{
           'Content-Type': 'application/json',
           "Access-Control_Allow_Origin": "*"
@@ -4826,7 +4826,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
 
   Future<void> _post_userPrivacy() async {
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_user_privacy'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_user_privacy'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
