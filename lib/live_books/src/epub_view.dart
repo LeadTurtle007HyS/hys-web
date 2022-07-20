@@ -192,10 +192,13 @@ class _EpubViewState extends State<EpubView> {
 
   Future<void> _get_all_suggestion_text() async {
     final http.Response response = await http.post(
-      Uri.parse('http://20.127.142.14:8080/predict'),
+      Uri.parse('https://hys.today/predict'),
       headers: <String, String>{
         'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
+        "Access-Control-Allow-Origin": "https://hys.today",
+        "Access-Control-Allow-Methods":
+            "GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD",
+        "Access-Control-Allow-Headers": "Origin, Content-Type"
       },
       body: jsonEncode(<String, dynamic>{
         "grade": "12",
@@ -670,7 +673,6 @@ class _EpubViewState extends State<EpubView> {
           children: [widget.tittle],
         ),
       ),
-     
       masterContextMenu: ContextMenu(
         width: 250,
         height: 260,
@@ -1596,9 +1598,18 @@ class _EpubViewState extends State<EpubView> {
                                                                         ? Color.fromRGBO(0, 255, 85, 1)
                                                                         : Color.fromRGBO(0, 153, 51, 1)
                                                                 : Color.fromRGBO(230, 0, 0, 1)))
-                                            : Text(
-                                                allSuggestionItem[i]
-                                                    ['Paragraph_related'],
+                                            : InkWell(
+                                                onTap: () {
+                                                  webFile.window.open(
+                                                      'http://localhost:58583/epub',
+                                                      'ePub');
+                                                },
+                                                child: Container(
+                                                  child: Text(
+                                                    allSuggestionItem[i]
+                                                        ['Paragraph_related'],
+                                                  ),
+                                                ),
                                               ),
                                       ),
                                     ),

@@ -135,8 +135,8 @@ class _SiteLayoutState extends State<SiteLayout> {
         print(
             'Message also contained a notification: ${message.notification!.body}');
         ElegantNotification(
-          title: message.notification!.title!,
-          description: message.notification!.body!,
+          title: Text(message.notification!.title!),
+          description: Text(message.notification!.body!),
           icon: Icon(
             Icons.notifications_active,
             color: Colors.green,
@@ -149,11 +149,10 @@ class _SiteLayoutState extends State<SiteLayout> {
 
   Future<void> _get_userData() async {
     final http.Response response = await http.get(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_get_user_data/$_currentUserId'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_user_data/$_currentUserId'),
     );
 
-    print("get_user_data: ${response.statusCode}");
+    print("web_get_user_data: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
       setState(() {
         userDatainit = json.decode(response.body);
@@ -232,7 +231,7 @@ class _SiteLayoutState extends State<SiteLayout> {
       Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_posts'),
     );
 
-    print("get_all_sm_posts: ${response.statusCode}");
+    print("web_get_all_sm_posts: ${response.statusCode}");
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
       setState(() {
         allSocialPostLocalDB!.put("allpost", json.decode(response.body));
@@ -717,7 +716,7 @@ class _SiteLayoutState extends State<SiteLayout> {
             body: const ResponsiveWidget(
               largeScreen: LargeScreen(),
               smallScreen: SmallScreen(),
-              mediumScreen: MediumScreen(),
+              mediumScreen: LargeScreen(),
             )),
       );
     } else {

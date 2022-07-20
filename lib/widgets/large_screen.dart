@@ -12,6 +12,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/livebook_code/live_book_initial_process.dart';
+
 class LargeScreen extends StatefulWidget {
   const LargeScreen({Key? key}) : super(key: key);
 
@@ -58,7 +60,7 @@ class _LargeScreenState extends State<LargeScreen> {
                       : countData!.value["app_bar_navigation"][_currentUserId]
                                   [_currentUserId] ==
                               3
-                          ? LiveBookOpen()
+                          ? InitialLiveBook()
                           : countData!.value["app_bar_navigation"]
                                       [_currentUserId][_currentUserId] ==
                                   4

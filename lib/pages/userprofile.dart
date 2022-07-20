@@ -417,8 +417,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_user_data() async {
     final http.Response response = await http.get(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_get_user_data/${this.user_id}'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_user_data/${this.user_id}'),
     );
 
     print("get_user_data: ${response.statusCode}");
@@ -480,8 +479,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_user_strength_Data() async {
     final http.Response response = await http.get(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_get_user_strength_data/${this.user_id}'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_user_strength_data/${this.user_id}'),
     );
 
     print("get_user_preferred_languages_data: ${response.statusCode}");
@@ -506,8 +504,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_user_weakness_Data() async {
     final http.Response response = await http.get(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_get_user_weakness_data/${this.user_id}'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_user_weakness_data/${this.user_id}'),
     );
 
     print("get_user_preferred_languages_data: ${response.statusCode}");
@@ -611,8 +608,7 @@ class _UserProfileState extends State<UserProfile>
 
   Future<void> _get_all_users_data_for_tagging() async {
     final http.Response response = await http.get(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_get_all_users_data_for_tagging'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_users_data_for_tagging'),
     );
 
     print("get_all_users_data_for_taggigng: ${response.statusCode}");
@@ -874,8 +870,7 @@ class _UserProfileState extends State<UserProfile>
   List<List<String>> subjectsOfUploads = [];
   Future<void> _get_user_uploads() async {
     final http.Response response = await http.get(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_get_user_uploads/${this.user_id}'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_user_uploads/${this.user_id}'),
     );
 
     print("get_user_uploads: ${response.statusCode}");
@@ -958,8 +953,7 @@ class _UserProfileState extends State<UserProfile>
     userPrivacyLocal = [];
     userPrivacy = [];
     final http.Response response = await http.get(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_get_user_privacy/${this.user_id}'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_user_privacy/${this.user_id}'),
     );
 
     print("get_user_privacy: ${response.statusCode}");
@@ -6589,8 +6583,8 @@ class _UserProfileState extends State<UserProfile>
             });
             Navigator.of(context).pop();
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attached video successfully.",
+              title: Text("Congrats,"),
+              description: Text("You attached video successfully."),
             );
 
             _addAchievements();
@@ -6930,9 +6924,9 @@ class _UserProfileState extends State<UserProfile>
                                                       ]);
                                                     });
                                                     ElegantNotification.success(
-                                                      title: "Congrats,",
-                                                      description:
-                                                          "Your achievement saved successfully.",
+                                                      title: Text("Congrats,"),
+                                                      description: Text(
+                                                          "Your achievement saved successfully."),
                                                     );
 
                                                     _call_apis();
@@ -7253,9 +7247,9 @@ class _UserProfileState extends State<UserProfile>
                                                       ]);
                                                     }
                                                     ElegantNotification.success(
-                                                      title: "Congrats,",
-                                                      description:
-                                                          "Your scorecard saved successfully.",
+                                                      title: Text("Congrats,"),
+                                                      description: Text(
+                                                          "Your scorecard saved successfully."),
                                                     );
 
                                                     _call_apis();
@@ -8288,7 +8282,7 @@ class _UserProfileState extends State<UserProfile>
                                 style: TeXViewStyle(
                                   fontStyle: TeXViewFontStyle(
                                       fontSize: 8,
-                                      sizeUnit: TeXViewSizeUnit.Pt),
+                                      sizeUnit: TeXViewSizeUnit.pt),
                                   padding: TeXViewPadding.all(10),
                                 )),
                           ]),
@@ -8566,7 +8560,7 @@ class _UserProfileState extends State<UserProfile>
                                       style: TeXViewStyle(
                                         fontStyle: TeXViewFontStyle(
                                             fontSize: 8,
-                                            sizeUnit: TeXViewSizeUnit.Pt),
+                                            sizeUnit: TeXViewSizeUnit.pt),
                                         padding: TeXViewPadding.all(10),
                                       )),
                                 ]),
@@ -8778,7 +8772,7 @@ class _UserProfileState extends State<UserProfile>
                                                             fontSize: 10,
                                                             sizeUnit:
                                                                 TeXViewSizeUnit
-                                                                    .Pt),
+                                                                    .pt),
                                                         padding:
                                                             TeXViewPadding.all(
                                                                 5),
@@ -9705,8 +9699,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _add_questions_examlikelyhood_details(
       String user_id, String question_id, String examlikelyhood_level) async {
     final http.Response response = await http.post(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_add_questions_examlikelyhood_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_questions_examlikelyhood_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -9738,8 +9731,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _add_questions_toughness_details(
       String user_id, String question_id, String toughness_level) async {
     final http.Response response = await http.post(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_add_questions_toughness_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_add_questions_toughness_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -9756,8 +9748,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _delete_questions_toughness_details(
       String user_id, String question_id) async {
     final http.Response response = await http.delete(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_delete_questions_toughness_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_delete_questions_toughness_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -9807,8 +9798,7 @@ class _UserProfileState extends State<UserProfile>
     print("view: ${view.toString()}");
     print("impression: ${impression.toString()}");
     final http.Response response = await http.put(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_update_counts_in_question_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_update_counts_in_question_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -10133,8 +10123,7 @@ class _UserProfileState extends State<UserProfile>
   Future<void> _delete_questions_like_details(
       String user_id, String question_id) async {
     final http.Response response = await http.delete(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_delete_questions_like_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_delete_questions_like_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"

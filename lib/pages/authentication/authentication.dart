@@ -393,9 +393,9 @@ class _AuthPageState extends State<AuthPage> {
                           } else {
                             print("Invalid user");
                             ElegantNotification.error(
-                              title: "Error",
-                              description:
-                                  "Something wrong, please check email ID or Password: $result",
+                              title: Text("Error"),
+                              description: Text(
+                                  "Something wrong, please check email ID or Password: $result"),
                             );
 
                             setState(() {
@@ -405,9 +405,9 @@ class _AuthPageState extends State<AuthPage> {
                           }
                         } else {
                           ElegantNotification.error(
-                            title: "Error",
-                            description:
-                                "Something wrong, please check email ID or Password",
+                            title: Text("Error"),
+                            description: Text(
+                                "Something wrong, please check email ID or Password"),
                           );
                         }
                       }
@@ -628,8 +628,8 @@ class _AuthPageState extends State<AuthPage> {
                         } else {
                           print("Signup failed");
                           ElegantNotification.error(
-                            title: "Signup failed,",
-                            description: "$result.",
+                            title: Text("Signup failed,"),
+                            description: Text("$result."),
                           );
                           setState(() {
                             loading = false;
@@ -637,8 +637,8 @@ class _AuthPageState extends State<AuthPage> {
                         }
                       } else {
                         ElegantNotification.error(
-                          title: "Error",
-                          description: "Something wrong",
+                          title: Text("Error"),
+                          description: Text("Something wrong"),
                         );
                       }
                     }
@@ -816,9 +816,9 @@ class _AuthPageState extends State<AuthPage> {
                             });
                             Navigator.pop(context);
                             ElegantNotification.error(
-                              title: "Error",
-                              description:
-                                  "Your Email ID is not registered. Please enter correct email ID or registered yourself.",
+                              title: Text("Error"),
+                              description: Text(
+                                  "Your Email ID is not registered. Please enter correct email ID or registered yourself."),
                             );
                           } else {
                             Navigator.pop(context);
@@ -826,9 +826,9 @@ class _AuthPageState extends State<AuthPage> {
                               _forgotEmainloading = false;
                             });
                             ElegantNotification.info(
-                              title: "Hey,",
-                              description:
-                                  "Reset link sent on your Email Address. Please reset password by using that link.",
+                              title: Text("Hey,"),
+                              description: Text(
+                                  "Reset link sent on your Email Address. Please reset password by using that link."),
                             );
                           }
                         }

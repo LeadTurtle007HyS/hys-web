@@ -5,7 +5,7 @@ class EpubCRUD {
   Future<bool> addUserTextSelectionDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/add_user_epub_selected_text'),
+      Uri.parse('https://hys.today/add_user_epub_selected_text'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -36,7 +36,7 @@ class EpubCRUD {
   Future<bool> deleteUserTextSelectionDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/delete_user_epub_selected_text'),
+      Uri.parse('https://hys.today/delete_user_epub_selected_text'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"

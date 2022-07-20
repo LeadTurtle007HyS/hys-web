@@ -1355,7 +1355,7 @@ class _OverViewState extends State<OverView> {
                           TeXViewDocument(allQuestionsData[index]["question"],
                               style: TeXViewStyle(
                                 fontStyle: TeXViewFontStyle(
-                                    fontSize: 12, sizeUnit: TeXViewSizeUnit.Pt),
+                                    fontSize: 12, sizeUnit: TeXViewSizeUnit.pt),
                                 padding: TeXViewPadding.all(10),
                               )),
                         ]),
@@ -2018,7 +2018,7 @@ class _OverViewState extends State<OverView> {
                                         style: TeXViewStyle(
                                           fontStyle: TeXViewFontStyle(
                                               fontSize: 12,
-                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                              sizeUnit: TeXViewSizeUnit.pt),
                                           padding: TeXViewPadding.all(10),
                                         )),
                                   ]),
@@ -2697,7 +2697,7 @@ class _OverViewState extends State<OverView> {
                                         style: TeXViewStyle(
                                           fontStyle: TeXViewFontStyle(
                                               fontSize: 12,
-                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                              sizeUnit: TeXViewSizeUnit.pt),
                                           padding: TeXViewPadding.all(10),
                                         )),
                                   ]),
@@ -3178,7 +3178,7 @@ class _OverViewState extends State<OverView> {
                           TeXViewDocument(allQuestionsData[index]["question"],
                               style: TeXViewStyle(
                                 fontStyle: TeXViewFontStyle(
-                                    fontSize: 12, sizeUnit: TeXViewSizeUnit.Pt),
+                                    fontSize: 12, sizeUnit: TeXViewSizeUnit.pt),
                                 padding: TeXViewPadding.all(10),
                               )),
                         ]),
@@ -3610,9 +3610,9 @@ class _OverViewState extends State<OverView> {
                                   });
                                 }
                                 ElegantNotification.success(
-                                        title: "Saved!",
+                                        title: Text("Saved!"),
                                         description:
-                                            "Post is saved successfully.")
+                                            Text("Post is saved successfully."))
                                     .show(context);
                                 Navigator.of(context).pop();
                               } else if (allQuestionWiseSavedOrNot[i] == true) {
@@ -3698,9 +3698,9 @@ class _OverViewState extends State<OverView> {
                                   });
                                 }
                                 ElegantNotification.success(
-                                    title: "Bookmarked!",
+                                    title: Text("Bookmarked!"),
                                     description:
-                                        "Post is bookmarked successfully.");
+                                        Text("Post is bookmarked successfully."));
                                 Navigator.of(context).pop();
                               } else if (allQuestionWiseBookmarkedOrNot[i] ==
                                   true) {
@@ -4207,7 +4207,7 @@ class _OverViewState extends State<OverView> {
                                                                         fontSize:
                                                                             10,
                                                                         sizeUnit:
-                                                                            TeXViewSizeUnit.Pt),
+                                                                            TeXViewSizeUnit.pt),
                                                                     padding:
                                                                         TeXViewPadding
                                                                             .all(5),
@@ -8688,7 +8688,7 @@ class _OverViewState extends State<OverView> {
                                                                   fontSize: 8,
                                                                   sizeUnit:
                                                                       TeXViewSizeUnit
-                                                                          .Pt),
+                                                                          .pt),
                                                           padding:
                                                               TeXViewPadding
                                                                   .all(10),
@@ -9346,9 +9346,9 @@ class _OverViewState extends State<OverView> {
                                           .put("data", allQuestionsData);
 
                                       ElegantNotification.success(
-                                        title: "Congrats,",
+                                        title: Text("Congrats,"),
                                         description:
-                                            "Your question posted successfully.",
+                                            Text("Your question posted successfully."),
                                       );
 
                                       question = "";
@@ -9395,8 +9395,8 @@ class _OverViewState extends State<OverView> {
                                       Navigator.of(context).pop();
                                     } else {
                                       ElegantNotification.error(
-                                        title: "Error...",
-                                        description: "Something wrong.",
+                                        title: Text("Error..."),
+                                        description: Text("Something wrong."),
                                       );
                                     }
                                   }
@@ -9646,9 +9646,9 @@ class _OverViewState extends State<OverView> {
                                     allQuestionsLocalDB!
                                         .put("data", allQuestionsData);
                                     ElegantNotification.success(
-                                      title: "Congrats,",
+                                      title: Text("Congrats,"),
                                       description:
-                                          "Your shared question posted successfully.",
+                                          Text("Your shared question posted successfully."),
                                     );
 
                                     question = "";
@@ -9693,8 +9693,8 @@ class _OverViewState extends State<OverView> {
                                     Navigator.of(context).pop();
                                   } else {
                                     ElegantNotification.error(
-                                      title: "Error...",
-                                      description: "Something wrong.",
+                                      title:Text( "Error..."),
+                                      description: Text("Something wrong."),
                                     );
                                   }
                                 }
@@ -9942,7 +9942,7 @@ class _OverViewState extends State<OverView> {
                                       style: TeXViewStyle(
                                         fontStyle: TeXViewFontStyle(
                                             fontSize: 12,
-                                            sizeUnit: TeXViewSizeUnit.Pt),
+                                            sizeUnit: TeXViewSizeUnit.pt),
                                         padding: TeXViewPadding.all(10),
                                       )),
                                 ]),
@@ -10387,8 +10387,8 @@ class _OverViewState extends State<OverView> {
             });
             Navigator.of(context).pop();
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attatched note successfully.",
+              title:Text( "Congrats,"),
+              description: Text("You attatched note successfully."),
             );
             _addQuestionPostDialog();
           }
@@ -10431,8 +10431,8 @@ class _OverViewState extends State<OverView> {
             });
             Navigator.of(context).pop();
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attatched video file successfully.",
+              title: Text("Congrats,"),
+              description: Text("You attatched video file successfully."),
             );
 
             _addQuestionPostDialog();
@@ -10477,8 +10477,8 @@ class _OverViewState extends State<OverView> {
 
             Navigator.of(context).pop();
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attatched audio file successfully.",
+              title:Text( "Congrats,"),
+              description: Text("You attatched audio file successfully."),
             );
 
             _addQuestionPostDialog();
@@ -11223,7 +11223,7 @@ class _OverViewState extends State<OverView> {
                                                   fontStyle: TeXViewFontStyle(
                                                       fontSize: 12,
                                                       sizeUnit:
-                                                          TeXViewSizeUnit.Pt),
+                                                          TeXViewSizeUnit.pt),
                                                   padding:
                                                       TeXViewPadding.all(10),
                                                 )),
@@ -11426,7 +11426,7 @@ class _OverViewState extends State<OverView> {
                                                                 fontSize: 8,
                                                                 sizeUnit:
                                                                     TeXViewSizeUnit
-                                                                        .Pt),
+                                                                        .pt),
                                                         padding:
                                                             TeXViewPadding.all(
                                                                 10),
@@ -12013,9 +12013,9 @@ class _OverViewState extends State<OverView> {
                                         ]);
                                         //////////////////////////////////////////////////////////////////////////
                                         ElegantNotification.success(
-                                          title: "Congrats,",
+                                          title: Text("Congrats,"),
                                           description:
-                                              "Your answer posted successfully.",
+                                              Text("Your answer posted successfully."),
                                         );
 
                                         _update_count(
@@ -12053,8 +12053,8 @@ class _OverViewState extends State<OverView> {
                                         Navigator.of(context).pop();
                                       } else {
                                         ElegantNotification.error(
-                                          title: "error...",
-                                          description: "Something wrong.",
+                                          title: Text("error..."),
+                                          description: Text("Something wrong."),
                                         );
                                       }
                                     }
@@ -12411,8 +12411,8 @@ class _OverViewState extends State<OverView> {
             Navigator.of(context).pop();
             _addAnswerPostDialog(qIndex);
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attatched note successfully.",
+              title: Text("Congrats,"),
+              description: Text("You attatched note successfully."),
             );
           }
         }
@@ -12457,8 +12457,8 @@ class _OverViewState extends State<OverView> {
             Navigator.of(context).pop();
             _addAnswerPostDialog(qIndex);
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attatched video file successfully.",
+              title: Text("Congrats,"),
+              description: Text("You attatched video file successfully."),
             );
           }
         }
@@ -12503,8 +12503,8 @@ class _OverViewState extends State<OverView> {
             Navigator.of(context).pop();
             _addAnswerPostDialog(qIndex);
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attatched audio file successfully.",
+              title: Text("Congrats,"),
+              description:Text( "You attatched audio file successfully."),
             );
           }
         }
@@ -12776,7 +12776,7 @@ class _OverViewState extends State<OverView> {
                                                               fontSize: 12,
                                                               sizeUnit:
                                                                   TeXViewSizeUnit
-                                                                      .Pt),
+                                                                      .pt),
                                                       padding:
                                                           TeXViewPadding.all(
                                                               10),
@@ -13540,9 +13540,9 @@ class _OverViewState extends State<OverView> {
                                         ]);
                                         //////////////////////////////////////////////////////////////////////////
                                         ElegantNotification.success(
-                                          title: "Congrats,",
+                                          title: Text("Congrats,"),
                                           description:
-                                              "Your comment posted successfully.",
+                                              Text("Your comment posted successfully."),
                                         );
 
                                         // _update_count(
@@ -13577,8 +13577,8 @@ class _OverViewState extends State<OverView> {
                                         Navigator.of(context).pop();
                                       } else {
                                         ElegantNotification.error(
-                                          title: "Error...",
-                                          description: "Something wrong.",
+                                          title: Text("Error..."),
+                                          description: Text("Something wrong."),
                                         );
                                       }
                                     }
@@ -13858,8 +13858,8 @@ class _OverViewState extends State<OverView> {
             Navigator.of(context).pop();
             _addCommentPostDialog(qIndex, ansSelectID, ansIndex);
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attatched note successfully.",
+              title: Text("Congrats,"),
+              description: Text("You attatched note successfully."),
             );
           }
         }
@@ -13947,8 +13947,8 @@ class _OverViewState extends State<OverView> {
 
             Navigator.of(context).pop();
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attatched audio file successfully.",
+              title:Text( "Congrats,"),
+              description:Text( "You attatched audio file successfully."),
             );
             _addCommentPostDialog(qIndex, ansSelectID, ansIndex);
           }
@@ -14690,9 +14690,9 @@ class _OverViewState extends State<OverView> {
                                         ]);
                                         //////////////////////////////////////////////////////////////////////////
                                         ElegantNotification.success(
-                                          title: "Congrats,",
+                                          title:Text( "Congrats,"),
                                           description:
-                                              "Your reply posted successfully.",
+                                              Text("Your reply posted successfully."),
                                         );
 
                                         // _update_count(
@@ -14720,8 +14720,8 @@ class _OverViewState extends State<OverView> {
                                         Navigator.of(context).pop();
                                       } else {
                                         ElegantNotification.error(
-                                          title: "Error...",
-                                          description: "Something wrong.",
+                                          title:Text( "Error..."),
+                                          description:Text( "Something wrong."),
                                         );
                                       }
                                     }

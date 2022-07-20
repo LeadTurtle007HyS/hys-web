@@ -104,7 +104,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
     }
 
     if (_image != null) {
-      File? croppedFile = await ImageCropper.cropImage(
+      File? croppedFile = await ImageCropper().cropImage(
           sourcePath: _image!.path,
           compressQuality: 40,
           aspectRatioPresets: Platform.isAndroid

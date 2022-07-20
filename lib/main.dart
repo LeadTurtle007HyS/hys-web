@@ -1,25 +1,23 @@
-import 'dart:convert';
-import 'dart:io';
+import 'dart:typed_data';
 import 'package:HyS/pages/authentication/authentication.dart';
-import 'package:HyS/pages/openLink.dart';
-import 'package:HyS/test1.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:HyS/pages/livebook_code/liveBookOpen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:oktoast/oktoast.dart';
 import 'constants/style.dart';
 import 'controllers/menu_controller.dart';
-import 'controllers/navigation_controller.dart';
-import 'layout.dart';
-import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
+import 'package:HyS/live_books/epub_view.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'controllers/navigation_controller.dart';
+import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
+
+String user_id = '';
+String epub_url = '';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -65,11 +63,14 @@ void main() async {
 
   await Hive.openBox("topiclist");
 
+  await Hive.openBox("epub");
+
   await Hive.openBox("allsocialposts");
   await Hive.openBox("allsocialcomments");
   await Hive.openBox("allsocialreplies");
 
   configureApp();
+
   runApp(const MyApp());
 }
 
@@ -81,6 +82,7 @@ class MyApp extends StatelessWidget {
     return Portal(
       child: OKToast(
         child: GetMaterialApp(
+          initialRoute: '/welcome',
           debugShowCheckedModeBanner: false,
           title: "HyS",
           theme: ThemeData(
@@ -94,7 +96,25 @@ class MyApp extends StatelessWidget {
             }),
             primaryColor: Colors.blue,
           ),
+          routes: {
+            '/welcome': (context) => AuthPage(),
+          },
           home: AuthPage(),
+          onGenerateRoute: (settings) {
+            List<String> pathComponents = settings.name!.split('/');
+            print(pathComponents);
+            if (pathComponents[1] == 'epub') {
+              // user_id = pathComponents[2];
+              // epub_url = pathComponents[3];
+              return MaterialPageRoute(builder: (context) {
+                return EpubExternal();
+              });
+            } else {
+              return MaterialPageRoute(builder: (context) {
+                return AuthPage();
+              });
+            }
+          },
         ),
       ),
     );
@@ -298,5 +318,102 @@ class _DynamicDialogState extends State<DynamicDialog> {
       ],
       content: Text(widget.body),
     );
+  }
+}
+
+class EpubExternal extends StatefulWidget {
+  @override
+  _EpubExternalState createState() => _EpubExternalState();
+}
+
+class _EpubExternalState extends State<EpubExternal> {
+  EpubController? _epubReaderController;
+  bool _fileLoaded = true;
+  Uint8List? fileBytes;
+
+  @override
+  void initState() {
+    final loadedBook = _loadFromNetwork(
+        'https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/jesc101.epub?alt=media&token=c1a56d06-1406-4fa6-86c8-49ec21419d12');
+    _epubReaderController = EpubController(
+      document: EpubReader.readBook(loadedBook),
+      //  document: EpubReader,
+      // epubCfi:
+      //     'epubcfi(/6/26[id4]!/4/2/2[id4]/22)', // book.epub Chapter 3 paragraph 10
+      // epubCfi:
+      //     'epubcfi(/6/6[chapter-2]!/4/2/1612)', // book_2.epub Chapter 16 paragraph 3
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _epubReaderController!.dispose();
+    super.dispose();
+  }
+
+  Future<Uint8List> _loadFromAssets(String assetName) async {
+    final bytes = await rootBundle.load(assetName);
+    return bytes.buffer.asUint8List();
+  }
+
+  Future<Uint8List> _loadFromNetwork(String url) async {
+    final http.Response response = await http.get(
+      Uri.parse(url),
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      setState(() {
+        _fileLoaded = true;
+      });
+      fileBytes = response.bodyBytes;
+    }
+    return fileBytes!;
+  }
+
+  @override
+  Widget build(BuildContext context) => WillPopScope(
+        onWillPop: () {
+          return Future(() => false);
+        },
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            title: EpubActualChapter(
+              controller: _epubReaderController!,
+              builder: (chapterValue) => Text(
+                (chapterValue?.chapter?.Title?.trim() ?? '')
+                    .replaceAll('\n', ''),
+                textAlign: TextAlign.start,
+              ),
+            ),
+            leading: SizedBox(),
+          ),
+          body: EpubView(
+            controller: _epubReaderController!,
+            onDocumentLoaded: (document) {
+              print('isLoaded: $document');
+            },
+            dividerBuilder: (_) => Divider(),
+            tittle: Text(""),
+          ),
+        ),
+      );
+
+  void _showCurrentEpubCfi(context) {
+    final cfi = _epubReaderController!.generateEpubCfi();
+
+    if (cfi != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(cfi),
+          action: SnackBarAction(
+            label: 'GO',
+            onPressed: () {
+              _epubReaderController!.gotoEpubCfi(cfi);
+            },
+          ),
+        ),
+      );
+    }
   }
 }

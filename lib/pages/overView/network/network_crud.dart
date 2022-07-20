@@ -228,7 +228,8 @@ class NetworkCRUD {
   Future<bool> addsmProjectDiscussPostDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_add_user_sm_project_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_add_user_sm_project_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -306,7 +307,8 @@ class NetworkCRUD {
   Future<bool> addsmBlogCategoryDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_add_sm_blog_category_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_add_sm_blog_category_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -330,7 +332,8 @@ class NetworkCRUD {
   Future<bool> addsmUploadsDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_add_user_sm_uploads_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_add_user_sm_uploads_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -388,7 +391,8 @@ class NetworkCRUD {
   Future<bool> addsmCommentPostDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_add_user_sm_comment_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_add_user_sm_comment_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -419,7 +423,8 @@ class NetworkCRUD {
   Future<bool> addUserAchievementDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_add_user_achievement_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_add_user_achievement_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -564,7 +569,8 @@ class NetworkCRUD {
   Future<bool> updateSmPostLikeDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_update_sm_like_post_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_update_sm_like_post_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -587,7 +593,8 @@ class NetworkCRUD {
   Future<bool> deleteSmPostLikeDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_delete_sm_like_post_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_delete_sm_like_post_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -607,7 +614,8 @@ class NetworkCRUD {
   Future<bool> updateSmMoodPostLikeDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_update_sm_mood_post_count_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_update_sm_mood_post_count_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -633,7 +641,8 @@ class NetworkCRUD {
   Future<bool> updateSmCausePostLikeDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_update_user_sm_cause_count_details'),
+      Uri.parse(
+          'https://hys-api.herokuapp.com/web_update_user_sm_cause_count_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"

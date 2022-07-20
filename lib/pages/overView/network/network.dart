@@ -333,8 +333,7 @@ class _NetworkState extends State<Network> {
 
   Future<void> _get_all_users_data_for_tagging() async {
     final http.Response response = await http.get(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_get_all_users_data_for_tagging'),
+      Uri.parse('https://hys-api.herokuapp.com/web_get_all_users_data_for_tagging'),
     );
 
     print("get_all_users_data_for_taggigng: ${response.statusCode}");
@@ -3390,7 +3389,7 @@ class _NetworkState extends State<Network> {
                                                                             TeXViewStyle(
                                                                           fontStyle: TeXViewFontStyle(
                                                                               fontSize: 10,
-                                                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                                                              sizeUnit: TeXViewSizeUnit.pt),
                                                                           padding:
                                                                               TeXViewPadding.all(10),
                                                                         )),
@@ -3488,7 +3487,7 @@ class _NetworkState extends State<Network> {
                                                                             TeXViewStyle(
                                                                           fontStyle: TeXViewFontStyle(
                                                                               fontSize: 10,
-                                                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                                                              sizeUnit: TeXViewSizeUnit.pt),
                                                                           padding:
                                                                               TeXViewPadding.all(10),
                                                                         )),
@@ -3588,7 +3587,7 @@ class _NetworkState extends State<Network> {
                                                                             TeXViewStyle(
                                                                           fontStyle: TeXViewFontStyle(
                                                                               fontSize: 10,
-                                                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                                                              sizeUnit: TeXViewSizeUnit.pt),
                                                                           padding:
                                                                               TeXViewPadding.all(10),
                                                                         )),
@@ -3686,7 +3685,7 @@ class _NetworkState extends State<Network> {
                                                                             TeXViewStyle(
                                                                           fontStyle: TeXViewFontStyle(
                                                                               fontSize: 10,
-                                                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                                                              sizeUnit: TeXViewSizeUnit.pt),
                                                                           padding:
                                                                               TeXViewPadding.all(10),
                                                                         )),
@@ -3786,7 +3785,7 @@ class _NetworkState extends State<Network> {
                                                                             TeXViewStyle(
                                                                           fontStyle: TeXViewFontStyle(
                                                                               fontSize: 10,
-                                                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                                                              sizeUnit: TeXViewSizeUnit.pt),
                                                                           padding:
                                                                               TeXViewPadding.all(10),
                                                                         )),
@@ -3886,7 +3885,7 @@ class _NetworkState extends State<Network> {
                                                                             TeXViewStyle(
                                                                           fontStyle: TeXViewFontStyle(
                                                                               fontSize: 10,
-                                                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                                                              sizeUnit: TeXViewSizeUnit.pt),
                                                                           padding:
                                                                               TeXViewPadding.all(10),
                                                                         )),
@@ -3986,7 +3985,7 @@ class _NetworkState extends State<Network> {
                                                                             TeXViewStyle(
                                                                           fontStyle: TeXViewFontStyle(
                                                                               fontSize: 10,
-                                                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                                                              sizeUnit: TeXViewSizeUnit.pt),
                                                                           padding:
                                                                               TeXViewPadding.all(10),
                                                                         )),
@@ -4086,7 +4085,7 @@ class _NetworkState extends State<Network> {
                                                                             TeXViewStyle(
                                                                           fontStyle: TeXViewFontStyle(
                                                                               fontSize: 10,
-                                                                              sizeUnit: TeXViewSizeUnit.Pt),
+                                                                              sizeUnit: TeXViewSizeUnit.pt),
                                                                           padding:
                                                                               TeXViewPadding.all(10),
                                                                         )),
@@ -8712,8 +8711,8 @@ class _NetworkState extends State<Network> {
               progress = 0.0;
             });
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attatched video file successfully.",
+              title: Text("Congrats,"),
+              description: Text("You attatched video file successfully."),
             );
           }
         }
@@ -9705,15 +9704,15 @@ class _NetworkState extends State<Network> {
                                                     _call_apis();
 
                                                     ElegantNotification.success(
-                                                      title: "Congrats,",
-                                                      description:
-                                                          "Your post created successfully.",
+                                                      title: Text("Congrats,"),
+                                                      description: Text(
+                                                          "Your post created successfully."),
                                                     );
                                                   } else {
                                                     ElegantNotification.error(
-                                                      title: "Error...",
-                                                      description:
-                                                          "Something wrong.",
+                                                      title: Text("Error..."),
+                                                      description: Text(
+                                                          "Something wrong."),
                                                     );
                                                   }
                                                 }
@@ -11930,17 +11929,17 @@ class _NetworkState extends State<Network> {
                                                                           ElegantNotification
                                                                               .success(
                                                                             title:
-                                                                                "Congrats,",
+                                                                                Text("Congrats,"),
                                                                             description:
-                                                                                "Your post created successfully.",
+                                                                                Text("Your post created successfully."),
                                                                           );
                                                                         } else {
                                                                           ElegantNotification
                                                                               .error(
                                                                             title:
-                                                                                "Error...",
+                                                                                Text("Error..."),
                                                                             description:
-                                                                                "Something wrong.",
+                                                                                Text("Something wrong."),
                                                                           );
                                                                         }
                                                                       }
@@ -13189,13 +13188,13 @@ class _NetworkState extends State<Network> {
                                                                             }
                                                                             _call_apis();
                                                                             ElegantNotification.success(
-                                                                              title: "Congrats,",
-                                                                              description: "Your post created successfully.",
+                                                                              title: Text("Congrats,"),
+                                                                              description: Text("Your post created successfully."),
                                                                             );
                                                                           } else {
                                                                             ElegantNotification.error(
-                                                                              title: "Error...",
-                                                                              description: "Something wrong.",
+                                                                              title: Text("Error..."),
+                                                                              description: Text("Something wrong."),
                                                                             );
                                                                           }
                                                                         }
@@ -14364,13 +14363,13 @@ class _NetworkState extends State<Network> {
                                                                                     }
                                                                                     _call_apis();
                                                                                     ElegantNotification.success(
-                                                                                      title: "Congrats,",
-                                                                                      description: "Your post created successfully.",
+                                                                                      title: Text("Congrats,"),
+                                                                                      description: Text("Your post created successfully."),
                                                                                     );
                                                                                   } else {
                                                                                     ElegantNotification.success(
-                                                                                      title: "Error...",
-                                                                                      description: "Something wrong.",
+                                                                                      title: Text("Error..."),
+                                                                                      description: Text("Something wrong."),
                                                                                     );
                                                                                   }
                                                                                 }
@@ -15053,7 +15052,7 @@ class _NetworkState extends State<Network> {
                                                                                                 child: TeXViewColumn(children: [
                                                                                                   TeXViewDocument(latex1,
                                                                                                       style: TeXViewStyle(
-                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                         padding: TeXViewPadding.all(10),
                                                                                                       )),
                                                                                                 ]),
@@ -15125,7 +15124,7 @@ class _NetworkState extends State<Network> {
                                                                                                 child: TeXViewColumn(children: [
                                                                                                   TeXViewDocument(latex2,
                                                                                                       style: TeXViewStyle(
-                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                         padding: TeXViewPadding.all(10),
                                                                                                       )),
                                                                                                 ]),
@@ -15203,7 +15202,7 @@ class _NetworkState extends State<Network> {
                                                                                                 child: TeXViewColumn(children: [
                                                                                                   TeXViewDocument(latex3,
                                                                                                       style: TeXViewStyle(
-                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                         padding: TeXViewPadding.all(10),
                                                                                                       )),
                                                                                                 ]),
@@ -15281,7 +15280,7 @@ class _NetworkState extends State<Network> {
                                                                                                 child: TeXViewColumn(children: [
                                                                                                   TeXViewDocument(latex4,
                                                                                                       style: TeXViewStyle(
-                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                         padding: TeXViewPadding.all(10),
                                                                                                       )),
                                                                                                 ]),
@@ -15359,7 +15358,7 @@ class _NetworkState extends State<Network> {
                                                                                                 child: TeXViewColumn(children: [
                                                                                                   TeXViewDocument(latex5,
                                                                                                       style: TeXViewStyle(
-                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                         padding: TeXViewPadding.all(10),
                                                                                                       )),
                                                                                                 ]),
@@ -15430,7 +15429,7 @@ class _NetworkState extends State<Network> {
                                                                                                 child: TeXViewColumn(children: [
                                                                                                   TeXViewDocument(latex6,
                                                                                                       style: TeXViewStyle(
-                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                         padding: TeXViewPadding.all(10),
                                                                                                       )),
                                                                                                 ]),
@@ -15609,7 +15608,7 @@ class _NetworkState extends State<Network> {
                                                                                                 child: TeXViewColumn(children: [
                                                                                                   TeXViewDocument(latex7,
                                                                                                       style: TeXViewStyle(
-                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                         padding: TeXViewPadding.all(10),
                                                                                                       )),
                                                                                                 ]),
@@ -15676,7 +15675,7 @@ class _NetworkState extends State<Network> {
                                                                                                 child: TeXViewColumn(children: [
                                                                                                   TeXViewDocument(latex8,
                                                                                                       style: TeXViewStyle(
-                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                        fontStyle: TeXViewFontStyle(fontSize: 6, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                         padding: TeXViewPadding.all(10),
                                                                                                       )),
                                                                                                 ]),
@@ -15960,8 +15959,8 @@ class _NetworkState extends State<Network> {
                                                                                 ]);
                                                                               }
                                                                               ElegantNotification.success(
-                                                                                title: "Congrats,",
-                                                                                description: "Your post created successfully.",
+                                                                                title: Text("Congrats,"),
+                                                                                description: Text("Your post created successfully."),
                                                                               );
                                                                               processStepSM = "";
                                                                               dropdownValueGrade = 'Grade';
@@ -16644,18 +16643,18 @@ class _NetworkState extends State<Network> {
                                                                                 () async {
                                                                               if (blogtitle == "") {
                                                                                 ElegantNotification.info(
-                                                                                  title: "",
-                                                                                  description: "Please write blog title.",
+                                                                                  title: Text(""),
+                                                                                  description: Text("Please write blog title."),
                                                                                 );
                                                                               } else if (blogintro == "") {
                                                                                 ElegantNotification.info(
-                                                                                  title: "",
-                                                                                  description: "Please write blog introduction.",
+                                                                                  title: Text(""),
+                                                                                  description: Text("Please write blog introduction."),
                                                                                 );
                                                                               } else if (choosedTopics.isEmpty) {
                                                                                 ElegantNotification.info(
-                                                                                  title: "",
-                                                                                  description: "Please choose one or more option which describe your blog content.",
+                                                                                  title: Text(""),
+                                                                                  description: Text("Please choose one or more option which describe your blog content."),
                                                                                 );
                                                                               }
                                                                               if ((choosedTopics.isNotEmpty) && (blogtitle != "") && (blogintro != "")) {
@@ -16740,8 +16739,8 @@ class _NetworkState extends State<Network> {
                                                                                   }
                                                                                 }
                                                                                 ElegantNotification.success(
-                                                                                  title: "Congrats,",
-                                                                                  description: "You posted blog successfully.",
+                                                                                  title: Text("Congrats,"),
+                                                                                  description: Text("You posted blog successfully."),
                                                                                 );
 
                                                                                 processStepSM = "";
@@ -17429,8 +17428,8 @@ class _NetworkState extends State<Network> {
                                   Navigator.of(context).pop();
                                 } else {
                                   ElegantNotification.error(
-                                    title: "Error...",
-                                    description: "Something wrong.",
+                                    title: Text("Error..."),
+                                    description: Text("Something wrong."),
                                   );
                                 }
                               },
@@ -18851,7 +18850,7 @@ class _NetworkState extends State<Network> {
                                                                                           child: TeXViewColumn(children: [
                                                                                             TeXViewDocument(allProjectsPostData[i]["requirements"].toString().substring(6),
                                                                                                 style: TeXViewStyle(
-                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                   padding: TeXViewPadding.all(10),
                                                                                                 )),
                                                                                           ]),
@@ -18915,7 +18914,7 @@ class _NetworkState extends State<Network> {
                                                                                           child: TeXViewColumn(children: [
                                                                                             TeXViewDocument(allProjectsPostData[i]["purchasedfrom"].toString().substring(6),
                                                                                                 style: TeXViewStyle(
-                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                   padding: TeXViewPadding.all(10),
                                                                                                 )),
                                                                                           ]),
@@ -18979,7 +18978,7 @@ class _NetworkState extends State<Network> {
                                                                                           child: TeXViewColumn(children: [
                                                                                             TeXViewDocument(allProjectsPostData[i]["procedure_"].toString().substring(6),
                                                                                                 style: TeXViewStyle(
-                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                   padding: TeXViewPadding.all(10),
                                                                                                 )),
                                                                                           ]),
@@ -19043,7 +19042,7 @@ class _NetworkState extends State<Network> {
                                                                                           child: TeXViewColumn(children: [
                                                                                             TeXViewDocument(allProjectsPostData[i]["theory"].toString().substring(6),
                                                                                                 style: TeXViewStyle(
-                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                   padding: TeXViewPadding.all(10),
                                                                                                 )),
                                                                                           ]),
@@ -19107,7 +19106,7 @@ class _NetworkState extends State<Network> {
                                                                                           child: TeXViewColumn(children: [
                                                                                             TeXViewDocument(allProjectsPostData[i]["findings"].toString().substring(6),
                                                                                                 style: TeXViewStyle(
-                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                   padding: TeXViewPadding.all(10),
                                                                                                 )),
                                                                                           ]),
@@ -19171,7 +19170,7 @@ class _NetworkState extends State<Network> {
                                                                                           child: TeXViewColumn(children: [
                                                                                             TeXViewDocument(allProjectsPostData[i]["similartheory"].toString().substring(6),
                                                                                                 style: TeXViewStyle(
-                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                   padding: TeXViewPadding.all(10),
                                                                                                 )),
                                                                                           ]),
@@ -19235,7 +19234,7 @@ class _NetworkState extends State<Network> {
                                                                                           child: TeXViewColumn(children: [
                                                                                             TeXViewDocument(allProjectsPostData[i]["summarydoc"].toString().substring(6),
                                                                                                 style: TeXViewStyle(
-                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                   padding: TeXViewPadding.all(10),
                                                                                                 )),
                                                                                           ]),
@@ -19299,7 +19298,7 @@ class _NetworkState extends State<Network> {
                                                                                           child: TeXViewColumn(children: [
                                                                                             TeXViewDocument(allProjectsPostData[i]["otherdoc"].toString().substring(6),
                                                                                                 style: TeXViewStyle(
-                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.Pt),
+                                                                                                  fontStyle: TeXViewFontStyle(fontSize: 10, sizeUnit: TeXViewSizeUnit.pt),
                                                                                                   padding: TeXViewPadding.all(10),
                                                                                                 )),
                                                                                           ]),
@@ -19492,8 +19491,8 @@ class _NetworkState extends State<Network> {
               });
               if (i == result.files.length - 1) {
                 ElegantNotification.success(
-                  title: "Congrats,",
-                  description: "You attached file successfully.",
+                  title: Text("Congrats,"),
+                  description: Text("You attached file successfully."),
                 );
               }
             }
@@ -20582,8 +20581,8 @@ class _NetworkState extends State<Network> {
               });
               Navigator.of(context).pop();
               ElegantNotification.success(
-                title: "Congrats,",
-                description: "You attached image successfully.",
+                title: Text("Congrats,"),
+                description: Text("You attached image successfully."),
               );
 
               forWhich == "post"
@@ -20631,8 +20630,8 @@ class _NetworkState extends State<Network> {
               });
               Navigator.of(context).pop();
               ElegantNotification.success(
-                title: "Congrats,",
-                description: "You attached image successfully.",
+                title: Text("Congrats,"),
+                description: Text("You attached image successfully."),
               );
 
               forWhich == "post"
@@ -20753,8 +20752,8 @@ class _NetworkState extends State<Network> {
             });
             Navigator.of(context).pop();
             ElegantNotification.success(
-              title: "Congrats,",
-              description: "You attached video successfully.",
+              title: Text("Congrats,"),
+              description: Text("You attached video successfully."),
             );
 
             _addSocialPostDialog();
@@ -20958,14 +20957,15 @@ class _NetworkState extends State<Network> {
                                               ]);
                                               //////////////////////////////////////////////////////////////////////////
                                               ElegantNotification.success(
-                                                title: "Congrats,",
-                                                description:
-                                                    "Your comment posted successfully.",
+                                                title: Text("Congrats,"),
+                                                description: Text(
+                                                    "Your comment posted successfully."),
                                               );
                                             } else {
                                               ElegantNotification.error(
-                                                title: "Error...",
-                                                description: "Sometning wrong.",
+                                                title: Text("Error..."),
+                                                description:
+                                                    Text("Sometning wrong."),
                                               );
                                             }
                                           }
@@ -21643,14 +21643,15 @@ class _NetworkState extends State<Network> {
                                               ]);
                                               //////////////////////////////////////////////////////////////////////////
                                               ElegantNotification.success(
-                                                title: "Congrats,",
-                                                description:
-                                                    "Your reply posted successfully.",
+                                                title: Text("Congrats,"),
+                                                description: Text(
+                                                    "Your reply posted successfully."),
                                               );
                                             } else {
                                               ElegantNotification.error(
-                                                title: "Error...",
-                                                description: "Something wrong.",
+                                                title: Text("Error..."),
+                                                description:
+                                                    Text("Something wrong."),
                                               );
                                             }
                                           }

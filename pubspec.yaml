@@ -45,7 +45,7 @@ dependencies:
   google_fonts: ^2.1.0
   charts_flutter:
     git:
-      url: git://github.com/google/charts.git
+      url: https://github.com/google/charts.git
       path: charts_flutter
   data_table_2: ^2.1.1
   draggable_widget: ^2.0.0
@@ -104,6 +104,8 @@ dependencies:
   rxdart: ^0.26.0
   collection: ^1.15.0
   flutter_math_fork: ^0.4.2+2
+  velocity_x: ^3.4.0
+  url_strategy: ^0.2.0
 
 
 

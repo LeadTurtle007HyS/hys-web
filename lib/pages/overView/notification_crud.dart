@@ -61,8 +61,7 @@ class NotificationCRUD {
   Future<bool> updateNotificationDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_update_notification_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_update_notification_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
@@ -80,8 +79,7 @@ class NotificationCRUD {
   Future<bool> deleteNotificationDetails(List data) async {
     print(data);
     final http.Response response = await http.post(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_delete_notification_details'),
+      Uri.parse('https://hys-api.herokuapp.com/web_delete_notification_details'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         "Access-Control_Allow_Origin": "*"
