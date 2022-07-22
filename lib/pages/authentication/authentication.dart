@@ -584,6 +584,7 @@ class _AuthPageState extends State<AuthPage> {
                         setState(() {
                           loading = true;
                         });
+
                         dynamic result = await _auth.signUp(
                             email, password, currentdatetime.toString());
                         print(result);

@@ -3,7 +3,7 @@ importScripts('https://www.gstatic.com/firebasejs/9.2.0/firebase-app-compat.js')
 
    /*Update with yours config*/
   const firebaseConfig = {
-    apiKey: "AIzaSyBgLz76YA2rYZQVZNkISn1ifdhp3LpXzYw",
+    apiKey: "AIzaSyAsS6xMQewKaayfUQrSccSWSRI4EEfCgS0",
     authDomain: "hys-pro-41c66.firebaseapp.com",
     databaseURL: "https://hys-pro-41c66-default-rtdb.firebaseio.com",
     projectId: "hys-pro-41c66",

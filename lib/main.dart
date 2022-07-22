@@ -1,6 +1,9 @@
 import 'dart:typed_data';
 import 'package:HyS/pages/authentication/authentication.dart';
 import 'package:HyS/pages/livebook_code/liveBookOpen.dart';
+import 'package:HyS/providers/profileProvider.dart';
+import 'package:HyS/providers/qReaction_provider.dart';
+import 'package:HyS/providers/question_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mentions/flutter_mentions.dart';
@@ -15,6 +18,8 @@ import 'package:HyS/live_books/epub_view.dart';
 import 'package:http/http.dart' as http;
 import 'controllers/navigation_controller.dart';
 import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
+import 'package:provider/provider.dart';
+import 'package:path_provider/path_provider.dart';
 
 String user_id = '';
 String epub_url = '';
@@ -26,9 +31,35 @@ void main() async {
   Get.put(NavigationController());
   Hive.initFlutter();
 
-// these are the local storage folders created by using Hive
-
+  // these are the local storage folders created by using Hive
+  await Hive.openBox("usertokendata");
+  await Hive.openBox("mypersonaldata");
   await Hive.openBox("userdata");
+  await Hive.openBox("allquestions");
+  await Hive.openBox("topiclist");
+  await Hive.openBox('allsocialposts');
+  // await Hive.openBox<List<dynamic>>('allsocialfeedposts');
+  await Hive.openBox("commentliked");
+  await Hive.openBox("commentreplied");
+  await Hive.openBox("commentreport");
+  await Hive.openBox("subcommentliked");
+  await Hive.openBox("subcommentreport");
+  await Hive.openBox("socialfeedreactions");
+  await Hive.openBox("socialfeedcommentsreactions");
+  await Hive.openBox("socialfeedsubcommentsreactions");
+  await Hive.openBox("socialfeedpostsaved");
+  await Hive.openBox('socialeventcommentsreactions');
+  await Hive.openBox('socialeventreactions');
+  await Hive.openBox('socialeventsubcommentsreactions');
+  await Hive.openBox('sm_events');
+  await Hive.openBox('sm_event_likes');
+  await Hive.openBox('sm_event_joins');
+  await Hive.openBox('sm_event_comments_likes');
+  await Hive.openBox('sm_event_comments_replies');
+  await Hive.openBox('sm_podcast');
+  await Hive.openBox('sm_podcast_likes');
+  await Hive.openBox("allnotifications");
+  /////////////////////////////////////////
   await Hive.openBox("questionliked");
   await Hive.openBox("questionmydoubttoo");
   await Hive.openBox("questionmarkimp");
@@ -50,7 +81,6 @@ void main() async {
   await Hive.openBox("answerreport");
   await Hive.openBox("answercommentliked");
   await Hive.openBox("answercommentreply");
-  await Hive.openBox("commentreport");
   await Hive.openBox("ansSubcommentliked");
   await Hive.openBox("ansSubcommentreport");
 
@@ -71,7 +101,70 @@ void main() async {
 
   configureApp();
 
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        // ChangeNotifierProvider(
+        //   create: (_) => NavBarIndex(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => themeController,
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => RecordController(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => TimerController(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => PathController(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => AudioPlayerController(""),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => SettingsController(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => WaveformController(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => SocialFeedProvider(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => SocialFeedCommentProvider(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => SpecificSocialFeedProvider(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => CommentReplyProviders(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => NotificationProvider(),
+        // ),
+        ChangeNotifierProvider(
+          create: (_) => QuestionProviders(),
+        ),
+        // ChangeNotifierProvider(
+        //   create: (_) => AnswerCommentProvider(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => AnswerProvider(),
+        // ),
+        // ChangeNotifierProvider(
+        //   create: (_) => AnsReplyProvider(),
+        // ),
+        ChangeNotifierProvider(
+          create: (_) => QReactionProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ProfileProvider(),
+        )
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
@@ -5,12 +6,149 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:path/path.dart' as Path;
-import 'dart:html' as html;
+
+import '../network/api_base_helper.dart';
 
 final databaseReference = FirebaseDatabase.instance.reference();
 
 class CrudMethods {
-  late String datavalue;
+  String? datavalue;
+
+  ApiBaseHelper _helper = ApiBaseHelper();
+
+  // Future<List<PodcastBgFile>> allBackgroundMusic() async {
+  //   QuerySnapshot<Map<String, dynamic>> documentSnapshot =
+  //       await FirebaseFirestore.instance
+  //           .collection(AppData.podcastFileNode)
+  //           .get();
+  //   try {
+  //     return documentSnapshot.docs
+  //         .map((e) => PodcastBgFile.fromDocumentSnapshot(doc: e))
+  //         .toList();
+  //   } catch (e) {
+  //     return <PodcastBgFile>[];
+  //   }
+  // }
+
+  // Stream<List<PodcastAlbumModel>> allAlbumList() {
+  //   var firebaseUser = auth.FirebaseAuth.instance.currentUser!.uid;
+  //   try {
+  //     return FirebaseFirestore.instance
+  //         .collection(AppData.podcastAlbumNode)
+  //         .where('userID', isEqualTo: firebaseUser)
+  //         .snapshots()
+  //         .map((notes) {
+  //       List<PodcastAlbumModel> notesFromFirestore = <PodcastAlbumModel>[];
+  //       for (final DocumentSnapshot<Map<String, dynamic>> doc in notes.docs) {
+  //         notesFromFirestore.add(PodcastAlbumModel.fromJson(json: doc));
+  //       }
+  //       return notesFromFirestore;
+  //     });
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+
+  // Stream<List<AlbumEpisode>> albumEpisodeList(String albumID) {
+  //   try {
+  //     return FirebaseFirestore.instance
+  //         .collection(AppData.podcastAlbumEpisodes)
+  //         .doc(albumID)
+  //         .collection("EpisodeList")
+  //         .snapshots()
+  //         .map((notes) {
+  //       List<AlbumEpisode> notesFromFirestore = <AlbumEpisode>[];
+  //       for (final DocumentSnapshot<Map<String, dynamic>> doc in notes.docs) {
+  //         notesFromFirestore.add(AlbumEpisode.fromJson(json: doc));
+  //       }
+  //       return notesFromFirestore;
+  //     });
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+
+  // Future<List<PodcastAlbumModel>> fetchAlbumList() async {
+  //   var firebaseUser = auth.FirebaseAuth.instance.currentUser!.uid;
+  //   QuerySnapshot<Map<String, dynamic>> documentSnapshot =
+  //       await FirebaseFirestore.instance
+  //           .collection(AppData.podcastAlbumNode)
+  //           .where('userID', isEqualTo: firebaseUser)
+  //           .get();
+  //   try {
+  //     return documentSnapshot.docs
+  //         .map((e) => PodcastAlbumModel.fromJson(json: e))
+  //         .toList();
+  //   } catch (e) {
+  //     return <PodcastAlbumModel>[];
+  //   }
+  // }
+
+  // Future<List<PodcastAlbumModel>> fetchAllPublishedAlbumList() async {
+  //   QuerySnapshot<Map<String, dynamic>> documentSnapshot =
+  //       await FirebaseFirestore.instance
+  //           .collection(AppData.podcastAlbumNode)
+  //           .where('isPublished', isEqualTo: true)
+  //           .get();
+  //   try {
+  //     return documentSnapshot.docs
+  //         .map((e) => PodcastAlbumModel.fromJson(json: e))
+  //         .toList();
+  //   } catch (e) {
+  //     return <PodcastAlbumModel>[];
+  //   }
+  // }
+
+  // Future<String> createAlbum(albumName) async {
+  //   var firebaseUser = auth.FirebaseAuth.instance.currentUser!.uid;
+  //   CollectionReference<Map<String, dynamic>> reference =
+  //       FirebaseFirestore.instance.collection(AppData.podcastAlbumNode);
+
+  //   final docRef = await reference.add({
+  //     "coverImage":
+  //         "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/album_bg.jfif?alt=media&token=63750901-141f-431d-b030-88fe52e87295",
+  //     "albumName": albumName,
+  //     "userID": firebaseUser,
+  //     "isPublished": false
+  //   });
+
+  //   DocumentReference<Map<String, dynamic>> documentReference =
+  //       reference.doc(docRef.id);
+  //   await documentReference.update({"albumID": docRef.id});
+  //   return docRef.id;
+  // }
+
+  // Future<bool> publishPodcast(String albumId) async {
+  //   CollectionReference<Map<String, dynamic>> reference =
+  //       FirebaseFirestore.instance.collection(AppData.podcastAlbumNode);
+  //   DocumentReference<Map<String, dynamic>> documentReference =
+  //       reference.doc(albumId);
+  //   await documentReference.update({"isPublished": true});
+  //   return true;
+  // }
+
+  // Future<void> addAlbumEpisode(
+  //     episodeName, albumId, episodeID, audioURL, fileType) async {
+  //   var firebaseUser = auth.FirebaseAuth.instance.currentUser!.uid;
+  //   CollectionReference<Map<String, dynamic>> reference = FirebaseFirestore
+  //       .instance
+  //       .collection(AppData.podcastAlbumEpisodes)
+  //       .doc(albumId)
+  //       .collection("EpisodeList");
+  //   final docRef = await reference.add({
+  //     "coverImage":
+  //         "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/album_bg.jfif?alt=media&token=63750901-141f-431d-b030-88fe52e87295",
+  //     "albumID": albumId,
+  //     "userID": firebaseUser,
+  //     "isPublished": false,
+  //     "episodeID": episodeID,
+  //     "episodeName": episodeName,
+  //     "audioURL": audioURL,
+  //     "fileType": fileType
+  //   });
+
+  //   return docRef;
+  // }
 
   Future<void> addUserCallingProfileData(
       fname, lname, profilepic, email) async {
@@ -381,6 +519,7 @@ class CrudMethods {
       state,
       avatar,
       List preferedlanguage,
+       croppedImage,
       hobbies,
       ambition,
       novels,
@@ -420,6 +559,9 @@ class CrudMethods {
           .child("usercallstatus")
           .child(firebaseUser)
           .set({"callstatus": false});
+      if (croppedImage != null) {
+        updateProfile(croppedImage);
+      }
     });
   }
 
@@ -536,6 +678,100 @@ class CrudMethods {
         .where('userid', isEqualTo: firebaseUser)
         .get();
   }
+
+  // Future<Map<String, dynamic>> getLoggedInUserData() async {
+  //   var firebaseUser = auth.FirebaseAuth.instance.currentUser!.uid;
+  //   var documents = await FirebaseFirestore.instance
+  //       .collection('userpersonaldata')
+  //       .doc(firebaseUser)
+  //       .get();
+  //   return Map<String, dynamic>.from(documents.data());
+  // }
+
+  // Future<List<MostReferredBookModel>> fetchMostReferredBook(
+  //     String grade, String subject, String board, String user_id) async {
+  //   user_id = "eY3GGpGA38f4eo49yeTFGSPKTAf1";
+  //   var body = jsonEncode({
+  //     "grade": grade,
+  //     "subject": subject,
+  //     "board": board,
+  //     "user_id": user_id
+  //   });
+  //   final response = await _helper.post(Constant.MOST_REFERRED_BOOK_LIST, body);
+  //   List<MostReferredBookModel> list1 = [];
+  //   for (int i = 0; i < response.length; i++) {
+  //     list1.add(MostReferredBookModel.fromJson(response[i]));
+  //   }
+  //   return list1;
+  // }
+
+  // Future<UserPersonalData> getUserPersonalData() async {
+  //   var firebaseUser = auth.FirebaseAuth.instance.currentUser!.uid;
+  //   var documents = await FirebaseFirestore.instance
+  //       .collection('userpersonaldata')
+  //       .doc(firebaseUser)
+  //       .get();
+
+  //   try {
+  //     UserPersonalData userPersonalData = UserPersonalData.fromJson(
+  //         Map<String, dynamic>.from(documents.data()));
+  //     return userPersonalData;
+  //   } catch (e) {
+  //     print("Exception $e");
+  //     return null;
+  //   }
+  // }
+
+  // Future<GradeDetailsModel> fetchGradeDetails(String grade) async {
+  //   final response = await _helper.get(Constant.LIVE_BOOK_PATH + grade);
+  //   return GradeDetailsModel.fromJson(response);
+  // }
+
+  // Future<ChapterModel> fetchchapterList(String publicationID) async {
+  //   final response =
+  //       await _helper.get(Constant.CHAPTER_LIST_PATH + publicationID);
+  //   return ChapterModel.fromJson(response);
+  // }
+
+  // Future<PreQuestionPaperModel> fetchPreviousYearQuestions(
+  //     String grade, String subject) async {
+  //   final response = await _helper.get(
+  //       Constant.PREVIOUS_YEAR_QUESTION_PAPER_PATH + subject + "/" + grade);
+  //   return PreQuestionPaperModel.fromJson(response);
+  // }
+
+  // Future<UserAllDataModel> getUserAllPersonalData(String userID) async {
+  //   final response = await _helper.get(Constant.ALL_USER_DATA_PATH + userID);
+  //   return UserAllDataModel.fromJson(response[0]);
+  // }
+
+  // Future<List<dynamic>> getUserAddedQuestion(String userID) async {
+  //   return await _helper.get(Constant.USER_ADDED_QUESTION_DATA_PATH + userID);
+  // }
+
+  // Future<List<dynamic>> getUserAddedAnswer(String userID) async {
+  //   return await _helper.get(Constant.USER_ADDED_ANSWER_DATA_PATH + userID);
+  // }
+
+  // Future<List<PredictChapterModel>> predictChapterList(
+  //     String query, String grade, String subject) async {
+  //   final response = await _helper.post2(
+  //       Constant.PREDICT_CONCEPT, query, subject, grade) as List;
+  //   return response.map((e) => PredictChapterModel.fromJson(e)).toList();
+  // }
+
+  // Future<List<MostReferredBookModel>> mostReferredBookByFriend(
+  //     String subject, String grade, String board, String userID) async {
+  //   var requestBody = {
+  //     "user_id": userID,
+  //     "board": board,
+  //     "subject": subject,
+  //     "grade": grade
+  //   };
+  //   final response = await _helper.post(
+  //       Constant.MOST_REFERRED_BOOK_BY_FRIEND, requestBody) as List;
+  //   return response.map((e) => MostReferredBookModel.fromJson(e)).toList();
+  // }
 
   Future getSpecificUserData(String uid) async {
     return await FirebaseFirestore.instance

@@ -29,6 +29,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+import '../../constants/constants.dart';
 import '../../layout.dart';
 
 GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: kGoogleApiKey);
@@ -4011,7 +4012,7 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
+                          const Padding(
                             padding: const EdgeInsets.only(left: 15.0),
                             child: Text(
                               'Improve Your Weakness!',
@@ -4409,217 +4410,212 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
     }
   }
 
-  Future<void> _post_newUserID() async {
-    final http.Response response = await http.put(
-      Uri.parse('https://hys-api.herokuapp.com/web_add_new_user'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(<String, String>{"user_id": _currentUserId}),
-    );
-
-    print(response.statusCode);
-
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      databaseReference.child("hysweb").update({"$_currentUserId": 1});
-      _post_userPersonalData();
-    }
-  }
-
-  Future<void> _post_userPersonalData() async {
-    final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_add_user_personal_data'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(<String, String>{
-        "user_id": _currentUserId,
-        "first_name": fnamecontroller.text,
-        "last_name": lnamecontroller.text,
-        "profilepic": imageSelectedFromGalleryURL != ""
-            ? imageSelectedFromGalleryURL
-            : choosedImg != ""
-                ? choosedImg
-                : "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/assets%2Fauthentication%2Frobot1.png?alt=media&token=01ee884d-34af-4f70-a8a6-e4935269bc51",
-        "email_id": emailidcontroller.text,
-        "mobile_no": mobilenocontroller.text,
-        "gender": dropdownValueGender,
-        "user_dob": personDOBcontroller.text,
-        "address": personaddresscontroller.text,
-        "street": personstreetcontroller.text,
-        "city": personcitycontroller.text,
-        "state": personstatecontroller.text
-      }),
-    );
-
-    print(response.statusCode);
-
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      databaseReference.child("hysweb").update({"$_currentUserId": 2});
-      _post_userSchoolData();
-    }
-  }
-
-  Future<void> _post_userSchoolData() async {
-    final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_add_user_school_data'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(<String, dynamic>{
-        "user_id": _currentUserId,
-        "school_name": schoolnamecontroller.text,
-        "grade": int.parse(dropdownValueGrade),
-        "stream": dropdownValueStream,
-        "board": (dropdownValueBoard == "CBSE")
-            ? "Central Board of Secondary Education (CBSE)"
-            : dropdownValueBoard,
-        "address": schooladdresscontroller.text,
-        "street": schoolstreetcontroller.text,
-        "city": schoolcitycontroller.text,
-        "state": schoolstatecontroller.text
-      }),
-    );
-
-    print(response.statusCode);
-
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      databaseReference.child("hysweb").update({"$_currentUserId": 3});
-      _post_userStrengthData();
-    }
-  }
-
-  Future<void> _post_userStrengthData() async {
-    for (int d = 0; d < finalSelectedStrengthSubjects.length; d++) {
-      for (int e = 0; e < finalSelectedStrengthTopics[d].length; e++) {
-        final http.Response response = await http.post(
-          Uri.parse('https://hys-api.herokuapp.com/web_add_user_strength_data'),
-          headers: <String, String>{
-            'Content-Type': 'application/json',
-            "Access-Control_Allow_Origin": "*"
-          },
-          body: jsonEncode(<String, dynamic>{
-            "user_id": _currentUserId,
-            "grade": int.parse(dropdownValueGrade),
-            "subject": finalSelectedStrengthSubjects[d],
-            "topic": finalSelectedStrengthTopics[d][e]
-          }),
-        );
-      }
-    }
-    databaseReference.child("hysweb").update({"$_currentUserId": 4});
-    _post_userWeaknessData();
-  }
-
-  Future<void> _post_userWeaknessData() async {
-    for (int d = 0; d < finalSelectedWeaknessSubjects.length; d++) {
-      for (int e = 0; e < finalSelectedWeaknessTopics[d].length; e++) {
-        final http.Response response = await http.post(
-          Uri.parse('https://hys-api.herokuapp.com/web_add_user_weakness_data'),
-          headers: <String, String>{
-            'Content-Type': 'application/json',
-            "Access-Control_Allow_Origin": "*"
-          },
-          body: jsonEncode(<String, dynamic>{
-            "user_id": _currentUserId,
-            "grade": int.parse(dropdownValueGrade),
-            "subject": finalSelectedWeaknessSubjects[d],
-            "topic": finalSelectedWeaknessTopics[d][e]
-          }),
-        );
-        print(d + e + response.statusCode);
-      }
-    }
-    databaseReference.child("hysweb").update({"$_currentUserId": 5});
-    _post_userPreferredLanguages();
-  }
-
-  Future<void> _post_userPreferredLanguages() async {
-    for (int d = 0; d < preferredLanguage.length; d++) {
-      final http.Response response = await http.post(
-        Uri.parse(
-            'https://hys-api.herokuapp.com/web_add_user_preferred_language_data'),
+  Future _postData() async {
+    print("SSubject: $finalSelectedStrengthSubjects");
+    print("STopic: $finalSelectedStrengthTopics");
+    print("WSubject: $finalSelectedWeaknessSubjects");
+    print("WTopic: $finalSelectedWeaknessTopics");
+    final List<http.Response> response = await Future.wait([
+      http.put(
+        Uri.parse(Constant.BASE_URL + 'add_new_user'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          "Access-Control_Allow_Origin": "*"
+        },
+        body: jsonEncode(<String, String>{"user_id": _currentUserId}),
+      ),
+      http.post(
+        Uri.parse(Constant.BASE_URL + 'add_user_personal_data'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          "Access-Control_Allow_Origin": "*"
+        },
+        body: jsonEncode(<String, String>{
+          "user_id": _currentUserId,
+          "first_name": fnamecontroller.text,
+          "last_name": lnamecontroller.text,
+          "profilepic": imageSelectedFromGalleryURL != ""
+              ? imageSelectedFromGalleryURL
+              : choosedImg != ""
+                  ? choosedImg
+                  : "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/assets%2Fauthentication%2Frobot1.png?alt=media&token=01ee884d-34af-4f70-a8a6-e4935269bc51",
+          "email_id": emailidcontroller.text,
+          "mobile_no": mobilenocontroller.text,
+          "gender": dropdownValueGender,
+          "user_dob": personDOBcontroller.text,
+          "address": personaddresscontroller.text,
+          "street": personstreetcontroller.text,
+          "city": personcitycontroller.text,
+          "state": personstatecontroller.text
+        }),
+      ),
+      http.post(
+        Uri.parse(Constant.BASE_URL + 'add_user_school_data'),
         headers: <String, String>{
           'Content-Type': 'application/json',
           "Access-Control_Allow_Origin": "*"
         },
         body: jsonEncode(<String, dynamic>{
           "user_id": _currentUserId,
-          "preferred_lang": preferredLanguage[d]
+          "school_name": schoolnamecontroller.text,
+          "grade": int.parse(dropdownValueGrade),
+          "stream": dropdownValueStream,
+          "board": (dropdownValueBoard == "CBSE")
+              ? "Central Board of Secondary Education (CBSE)"
+              : dropdownValueBoard,
+          "address": schooladdresscontroller.text,
+          "street": schoolstreetcontroller.text,
+          "city": schoolcitycontroller.text,
+          "state": schoolstatecontroller.text
         }),
-      );
-      print(response.statusCode);
-    }
-    databaseReference.child("hysweb").update({"$_currentUserId": 6});
-    databaseReference
-        .child("hysweb")
-        .child("qANDa")
-        .child("jump_to_listview_index")
-        .update({"$_currentUserId": 0});
+      ),
+      http.post(
+        Uri.parse(Constant.BASE_URL + 'add_user_preferred_language_data'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          "Access-Control_Allow_Origin": "*"
+        },
+        body: jsonEncode(<String, dynamic>{
+          "user_id": _currentUserId,
+          "preferred_lang_list": preferredLanguage
+        }),
+      ),
+      http.post(
+        Uri.parse(Constant.BASE_URL + 'add_user_strength_data'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          "Access-Control_Allow_Origin": "*"
+        },
+        body: jsonEncode(<String, dynamic>{
+          "user_id": _currentUserId,
+          "grade": int.parse(dropdownValueGrade),
+          "subject_list": finalSelectedStrengthSubjects,
+          "topic_list": finalSelectedStrengthTopics
+        }),
+      ),
+      http.post(
+        Uri.parse(Constant.BASE_URL + 'add_user_weakness_data'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          "Access-Control_Allow_Origin": "*"
+        },
+        body: jsonEncode(<String, dynamic>{
+          "user_id": _currentUserId,
+          "grade": int.parse(dropdownValueGrade),
+          "subject_list": finalSelectedWeaknessSubjects,
+          "topic_list": finalSelectedWeaknessTopics
+        }),
+      ),
+      http.post(
+        Uri.parse(Constant.BASE_URL + 'add_user_privacy'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          "Access-Control_Allow_Origin": "*"
+        },
+        body: jsonEncode(<String, dynamic>{
+          "user_id": _currentUserId,
+          "compare_date": comparedate
+        }),
+      )
+    ]);
+    setState(() {
+      if ((response[0].statusCode == 200) || (response[0].statusCode == 201)) {
+        print("userid added: true");
+        databaseReference.child("hysweb").update({"$_currentUserId": 1});
+      }
+      if ((response[1].statusCode == 200) || (response[1].statusCode == 201)) {
+        print("user personal details added: true");
+        databaseReference.child("hysweb").update({"$_currentUserId": 2});
+      }
+      if ((response[2].statusCode == 200) || (response[2].statusCode == 201)) {
+        print("user school details added: true");
+        databaseReference.child("hysweb").update({"$_currentUserId": 3});
+      }
+      if ((response[3].statusCode == 200) || (response[3].statusCode == 201)) {
+        print("user preffered lnguage details added: true");
+        databaseReference.child("hysweb").update({"$_currentUserId": 3});
+      }
+      if ((response[4].statusCode == 200) || (response[4].statusCode == 201)) {
+        print("user strength details added: true");
+        databaseReference.child("hysweb").update({"$_currentUserId": 4});
+      }
+      if ((response[5].statusCode == 200) || (response[5].statusCode == 201)) {
+        print("user weakness details added: true");
+        _firebase_dataload();
+        databaseReference.child("hysweb").update({"$_currentUserId": 5});
+        databaseReference
+            .child("hysweb")
+            .child("qANDa")
+            .child("jump_to_listview_index")
+            .update({"$_currentUserId": 0});
 
-    databaseReference
-        .child("hysweb")
-        .child("social")
-        .child("jump_to_listview_index")
-        .update({"$_currentUserId": 0});
+        databaseReference
+            .child("hysweb")
+            .child("social")
+            .child("jump_to_listview_index")
+            .update({"$_currentUserId": 0});
 
-    databaseReference
-        .child("hysweb")
-        .child("chat")
-        .child(_currentUserId)
-        .update({"index": 0, "userdetails": [], "chatid": ""});
+        databaseReference
+            .child("hysweb")
+            .child("chat")
+            .child(_currentUserId)
+            .update({"index": 0, "userdetails": [], "chatid": ""});
 
-    print("almost done");
+        print("almost done");
+        databaseReference
+            .child("hysweb")
+            .child("app_bar_navigation")
+            .child(FirebaseAuth.instance.currentUser!.uid)
+            .update({"$_currentUserId": 1, "userid": _currentUserId});
+        Navigator.of(_keyLoader.currentContext!, rootNavigator: true)
+            .pop(); //close the dialoge
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => SiteLayout()));
+      }
+    });
+  }
 
+  Future _firebase_dataload() async {
+    databaseReference.child("hysweb").update({"$_currentUserId": 4});
     crudobj.addUserData(
-        fnamecontroller.text,
-        lnamecontroller.text,
-        emailidcontroller.text,
-        mobilenocontroller.text,
-        dropdownValueGender,
-        personDOBcontroller.text,
-        personaddresscontroller.text,
-        personstreetcontroller.text,
-        personcitycontroller.text,
-        personstatecontroller.text,
-        imageSelectedFromGalleryURL != ""
-            ? imageSelectedFromGalleryURL
-            : choosedImg != ""
-                ? choosedImg
-                : "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/assets%2Fauthentication%2Frobot1.png?alt=media&token=01ee884d-34af-4f70-a8a6-e4935269bc51",
-        preferredLanguage,
-        "hobbies",
-        "ambition",
-        "novels",
-        "placesVisited",
-        "dreamVacations",
-        "createdate",
-        comparedate);
+      fnamecontroller.text,
+      lnamecontroller.text,
+      emailidcontroller.text,
+      mobilenocontroller.text,
+      dropdownValueGender,
+      personDOBcontroller.text,
+      personaddresscontroller.text,
+      personstreetcontroller.text,
+      personcitycontroller.text,
+      personstatecontroller.text,
+      imageSelectedFromGalleryURL != ""
+          ? imageSelectedFromGalleryURL
+          : choosedImg != ""
+              ? choosedImg
+              : "https://firebasestorage.googleapis.com/v0/b/hys-pro-41c66.appspot.com/o/assets%2Fauthentication%2Frobot1.png?alt=media&token=01ee884d-34af-4f70-a8a6-e4935269bc51",
+      preferredLanguage,
+      null,
+      "hobbies",
+      "ambition",
+      "novels",
+      "placesVisited",
+      "dreamVacations",
+      "createdate",
+      comparedate,
+    );
 
     crudobj.addUserSchoolData(
         schoolnamecontroller.text,
-        dropdownValueGrade,
+        int.parse(dropdownValueGrade),
         dropdownValueStream,
         (dropdownValueBoard == "CBSE")
             ? "Central Board of Secondary Education (CBSE)"
             : dropdownValueBoard,
-        schooladdresscontroller.text,
         schoolstreetcontroller.text,
+        schoolcitycontroller.text,
         schoolstatecontroller.text,
         "createdate",
         comparedate);
-    databaseReference
-        .child("hysweb")
-        .child("app_bar_navigation")
-        .child(FirebaseAuth.instance.currentUser!.uid)
-        .update({"$_currentUserId": 1, "userid": _currentUserId});
-    Navigator.of(_keyLoader.currentContext!, rootNavigator: true)
-        .pop(); //close the dialoge
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => SiteLayout()));
   }
 
   void _showCameraDialog() {
@@ -4766,8 +4762,8 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
                       onPressed: () async {
                         Navigator.of(context).pop();
                         Dialogs.showLoadingDialog(context, _keyLoader);
-                        _post_newUserID();
-                        _post_userPrivacy();
+                        _postData();
+                        //  _post_userPrivacy();
                       },
                       style: ElevatedButton.styleFrom(
                         primary: active,
@@ -4822,20 +4818,6 @@ class _RegistrationProcessState extends State<RegistrationProcess> {
         context: context,
         barrierDismissible: false,
         builder: (_) => alertDialog);
-  }
-
-  Future<void> _post_userPrivacy() async {
-    final http.Response response = await http.post(
-      Uri.parse('https://hys-api.herokuapp.com/web_add_user_privacy'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(<String, dynamic>{
-        "user_id": _currentUserId,
-        "comparedate": comparedate
-      }),
-    );
   }
 
   // Showing avtar in list

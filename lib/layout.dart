@@ -14,10 +14,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:hive_flutter/hive_flutter.dart';
-
+import 'package:provider/provider.dart';
+import 'constants/constants.dart';
 import 'constants/style.dart';
 import 'database/crud.dart';
 import 'helpers/responsiveness.dart';
+import 'providers/profileProvider.dart';
+import 'providers/question_provider.dart';
 
 class SiteLayout extends StatefulWidget {
   const SiteLayout({Key? key}) : super(key: key);
@@ -32,11 +35,8 @@ class _SiteLayoutState extends State<SiteLayout> {
   final String _currentUserId = FirebaseAuth.instance.currentUser!.uid;
   final databaseReference = FirebaseDatabase.instance.reference();
   int appbar_nav_index = 1;
-  List<dynamic> userDatainit = [];
-  Map<dynamic, dynamic> userData = {};
   Box<dynamic>? userDataDB;
   String? _token;
-  List userPreferredLang = [];
   Box<dynamic>? allQuestionsLocalDB;
 
   Box<dynamic>? allSocialPostLocalDB;
@@ -49,25 +49,24 @@ class _SiteLayoutState extends State<SiteLayout> {
   List<String> subjectList = [];
   Box<dynamic>? topicListQLocalDB;
 
+  @override
   void initState() {
-    _get_userData();
-    _getPermission();
-    _getTokenForUser();
-    _messageListener(context);
-    _get_user_languagePreference_Data();
-    _get_all_questions_posted();
-    _get_all_post_details();
-    _get_all_blog_post_details();
-    _get_all_mood_post_details();
-    _get_all_cause_post_details();
-    _get_all_bideas_post_details();
-    _get_all_project_post_details();
     userDataDB = Hive.box<dynamic>('userdata');
     allQuestionsLocalDB = Hive.box<dynamic>('allquestions');
     topicListQLocalDB = Hive.box<dynamic>('topiclist');
-
     allSocialPostLocalDB = Hive.box<dynamic>('allsocialposts');
+    _getPermission();
+    ProfileProvider profileProvider =
+        Provider.of<ProfileProvider>(context, listen: false);
+    profileProvider.fetchProfileDetials(_currentUserId);
 
+    // SocialFeedProvider socialFeedProvider= Provider.of<SocialFeedProvider>(context,listen:false);
+
+    // socialFeedProvider.fetchFeedListALL(_currentUserId);
+
+    QuestionProviders questionProvider =
+        Provider.of<QuestionProviders>(context, listen: false);
+    questionProvider.fetchQuestionList(_currentUserId);
     crudobj
         .getSubjectListSingleGradeWise((userDataDB!.get("grade")).toString(),
             "Central Board of Secondary Education (CBSE)")
@@ -126,61 +125,6 @@ class _SiteLayoutState extends State<SiteLayout> {
     print('User granted permission: ${settings.authorizationStatus}');
   }
 
-  void _messageListener(BuildContext context) {
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Got a message whilst in the foreground!');
-      print('Message notification: ${message.notification}');
-
-      if (message.notification != null) {
-        print(
-            'Message also contained a notification: ${message.notification!.body}');
-        ElegantNotification(
-          title: Text(message.notification!.title!),
-          description: Text(message.notification!.body!),
-          icon: Icon(
-            Icons.notifications_active,
-            color: Colors.green,
-          ),
-          progressIndicatorColor: Colors.green,
-        ).show(context);
-      }
-    });
-  }
-
-  Future<void> _get_userData() async {
-    final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/web_get_user_data/$_currentUserId'),
-    );
-
-    print("web_get_user_data: ${response.statusCode}");
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      setState(() {
-        userDatainit = json.decode(response.body);
-        userData = userDatainit[0];
-        //  userDataDB!.put("user_id", userData["user_id"]);
-        userDataDB!.put("first_name", userData["first_name"]);
-        userDataDB!.put("last_name", userData["last_name"]);
-        userDataDB!.put("email_id", userData["email_id"]);
-        userDataDB!.put("mobile_no", userData["mobile_no"]);
-        userDataDB!.put("address", userData["address"]);
-        userDataDB!.put("board", userData["board"]);
-        userDataDB!.put("city", userData["city"]);
-        userDataDB!.put("gender", userData["gender"]);
-        userDataDB!.put("grade", userData["grade"]);
-        userDataDB!.put("profilepic", userData["profilepic"]);
-        userDataDB!.put("school_address", userData["school_address"]);
-        userDataDB!.put("school_city", userData["school_city"]);
-        userDataDB!.put("school_name", userData["school_name"]);
-        userDataDB!.put("school_state", userData["school_state"]);
-        userDataDB!.put("school_street", userData["school_street"]);
-        userDataDB!.put("state", userData["state"]);
-        userDataDB!.put("stream", userData["stream"]);
-        userDataDB!.put("street", userData["street"]);
-        userDataDB!.put("user_dob", userData["user_dob"]);
-      });
-    }
-  }
-
   Future<void> _getTokenForUser() async {
     await FirebaseMessaging.instance.getToken().then((value) {
       print('FCM TokenToken: $value');
@@ -196,113 +140,113 @@ class _SiteLayoutState extends State<SiteLayout> {
     });
   }
 
-  Future<void> _get_user_languagePreference_Data() async {
-    final http.Response response = await http.get(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_get_user_preferred_languages_data/$_currentUserId'),
-    );
+  // Future<void> _get_user_languagePreference_Data() async {
+  //   final http.Response response = await http.get(
+  //     Uri.parse(
+  //         'https://hys-api.herokuapp.com/web_get_user_preferred_languages_data/$_currentUserId'),
+  //   );
 
-    print("get_user_preferred_languages_data: ${response.statusCode}");
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      setState(() {
-        userPreferredLang = json.decode(response.body);
+  //   print("get_user_preferred_languages_data: ${response.statusCode}");
+  //   if ((response.statusCode == 200) || (response.statusCode == 201)) {
+  //     setState(() {
+  //       userPreferredLang = json.decode(response.body);
 
-        userDataDB!.put("preferred_lang", userPreferredLang);
-      });
-    }
-  }
+  //       userDataDB!.put("preferred_lang", userPreferredLang);
+  //     });
+  //   }
+  // }
 
-  Future<void> _get_all_questions_posted() async {
-    final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/web_get_all_questions_posted'),
-    );
-    print("get_all_questions_posted: ${response.statusCode}");
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      setState(() {
-        allQuestionsLocalDB!.put("data", json.decode(response.body));
-      });
-    }
-  }
+  // Future<void> _get_all_questions_posted() async {
+  //   final http.Response response = await http.get(
+  //     Uri.parse('https://hys-api.herokuapp.com/web_get_all_questions_posted'),
+  //   );
+  //   print("get_all_questions_posted: ${response.statusCode}");
+  //   if ((response.statusCode == 200) || (response.statusCode == 201)) {
+  //     setState(() {
+  //       allQuestionsLocalDB!.put("data", json.decode(response.body));
+  //     });
+  //   }
+  // }
 
-  //social
+  // //social
 
-  Future<void> _get_all_post_details() async {
-    final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_posts'),
-    );
+  // Future<void> _get_all_post_details() async {
+  //   final http.Response response = await http.get(
+  //     Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_posts'),
+  //   );
 
-    print("web_get_all_sm_posts: ${response.statusCode}");
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      setState(() {
-        allSocialPostLocalDB!.put("allpost", json.decode(response.body));
-      });
-    }
-  }
+  //   print("web_get_all_sm_posts: ${response.statusCode}");
+  //   if ((response.statusCode == 200) || (response.statusCode == 201)) {
+  //     setState(() {
+  //       allSocialPostLocalDB!.put("allpost", json.decode(response.body));
+  //     });
+  //   }
+  // }
 
-  Future<void> _get_all_mood_post_details() async {
-    final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_mood_posts'),
-    );
+  // Future<void> _get_all_mood_post_details() async {
+  //   final http.Response response = await http.get(
+  //     Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_mood_posts'),
+  //   );
 
-    print("get_all_sm_mood_posts: ${response.statusCode}");
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      setState(() {
-        allSocialPostLocalDB!.put("moodpost", json.decode(response.body));
-      });
-    }
-  }
+  //   print("get_all_sm_mood_posts: ${response.statusCode}");
+  //   if ((response.statusCode == 200) || (response.statusCode == 201)) {
+  //     setState(() {
+  //       allSocialPostLocalDB!.put("moodpost", json.decode(response.body));
+  //     });
+  //   }
+  // }
 
-  Future<void> _get_all_cause_post_details() async {
-    final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_cause_posts'),
-    );
+  // Future<void> _get_all_cause_post_details() async {
+  //   final http.Response response = await http.get(
+  //     Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_cause_posts'),
+  //   );
 
-    print("get_all_sm_cause_posts: ${response.statusCode}");
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      setState(() {
-        allSocialPostLocalDB!.put("causepost", json.decode(response.body));
-      });
-    }
-  }
+  //   print("get_all_sm_cause_posts: ${response.statusCode}");
+  //   if ((response.statusCode == 200) || (response.statusCode == 201)) {
+  //     setState(() {
+  //       allSocialPostLocalDB!.put("causepost", json.decode(response.body));
+  //     });
+  //   }
+  // }
 
-  Future<void> _get_all_bideas_post_details() async {
-    final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_bideas_posts'),
-    );
+  // Future<void> _get_all_bideas_post_details() async {
+  //   final http.Response response = await http.get(
+  //     Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_bideas_posts'),
+  //   );
 
-    print("get_all_sm_bideas_posts: ${response.statusCode}");
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      setState(() {
-        allSocialPostLocalDB!.put("businesspost", json.decode(response.body));
-      });
-    }
-  }
+  //   print("get_all_sm_bideas_posts: ${response.statusCode}");
+  //   if ((response.statusCode == 200) || (response.statusCode == 201)) {
+  //     setState(() {
+  //       allSocialPostLocalDB!.put("businesspost", json.decode(response.body));
+  //     });
+  //   }
+  // }
 
-  Future<void> _get_all_project_post_details() async {
-    final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_project_posts'),
-    );
+  // Future<void> _get_all_project_post_details() async {
+  //   final http.Response response = await http.get(
+  //     Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_project_posts'),
+  //   );
 
-    print("get_all_sm_project_posts: ${response.statusCode}");
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      setState(() {
-        allSocialPostLocalDB!.put("projectpost", json.decode(response.body));
-      });
-    }
-  }
+  //   print("get_all_sm_project_posts: ${response.statusCode}");
+  //   if ((response.statusCode == 200) || (response.statusCode == 201)) {
+  //     setState(() {
+  //       allSocialPostLocalDB!.put("projectpost", json.decode(response.body));
+  //     });
+  //   }
+  // }
 
-  Future<void> _get_all_blog_post_details() async {
-    final http.Response response = await http.get(
-      Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_blog_posts'),
-    );
+  // Future<void> _get_all_blog_post_details() async {
+  //   final http.Response response = await http.get(
+  //     Uri.parse('https://hys-api.herokuapp.com/web_get_all_sm_blog_posts'),
+  //   );
 
-    print("get_all_sm_blog_posts: ${response.statusCode}");
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      setState(() {
-        allSocialPostLocalDB!.put("blogpost", json.decode(response.body));
-      });
-    }
-  }
+  //   print("get_all_sm_blog_posts: ${response.statusCode}");
+  //   if ((response.statusCode == 200) || (response.statusCode == 201)) {
+  //     setState(() {
+  //       allSocialPostLocalDB!.put("blogpost", json.decode(response.body));
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -315,10 +259,7 @@ class _SiteLayoutState extends State<SiteLayout> {
         }
       });
     });
-    if ((countData != null) &&
-        (userData.isNotEmpty) &&
-        (topics != null) &&
-        (service != null)) {
+    if ((countData != null) && (topics != null) && (service != null)) {
       appbar_nav_index = countData!.value["app_bar_navigation"][_currentUserId]
           [_currentUserId];
       return WillPopScope(
