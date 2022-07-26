@@ -246,47 +246,47 @@ class _AllNotificationsState extends State<AllNotifications>
       children: [
         InkWell(
           onTap: () {
-            if (allNotifications[i]["post_type"] == "question") {
-              for (int j = 0; j < allQuestionsData.length; j++) {
-                if (allQuestionsData[j]["question_id"] ==
-                    allNotifications[i]["post_id"]) {
-                  notifyCRUD.updateNotificationDetails(
-                      [allNotifications[i]["notify_id"]]);
-                  print("true");
-                  databaseReference
-                      .child("hysweb")
-                      .child("qANDa")
-                      .child("jump_to_listview_index")
-                      .update({"$_currentUserId": j});
-                  databaseReference
-                      .child("hysweb")
-                      .child("app_bar_navigation")
-                      .child(FirebaseAuth.instance.currentUser!.uid)
-                      .update({"$_currentUserId": 1});
-                  break;
-                }
-              }
-            } else if (allNotifications[i]["section"] == "social") {
-              for (int j = 0; j < allPostData.length; j++) {
-                if (allPostData[j]["post_id"] ==
-                    allNotifications[i]["post_id"]) {
-                  notifyCRUD.updateNotificationDetails(
-                      [allNotifications[i]["notify_id"]]);
+            // if (allNotifications[i]["post_type"] == "question") {
+            //   for (int j = 0; j < allQuestionsData.length; j++) {
+            //     if (allQuestionsData[j]["question_id"] ==
+            //         allNotifications[i]["post_id"]) {
+            //       notifyCRUD.updateNotificationDetails(
+            //           [allNotifications[i]["notify_id"]]);
+            //       print("true");
+            //       databaseReference
+            //           .child("hysweb")
+            //           .child("qANDa")
+            //           .child("jump_to_listview_index")
+            //           .update({"$_currentUserId": j});
+            //       databaseReference
+            //           .child("hysweb")
+            //           .child("app_bar_navigation")
+            //           .child(FirebaseAuth.instance.currentUser!.uid)
+            //           .update({"$_currentUserId": 1});
+            //       break;
+            //     }
+            //   }
+            // } else if (allNotifications[i]["section"] == "social") {
+            //   for (int j = 0; j < allPostData.length; j++) {
+            //     if (allPostData[j]["post_id"] ==
+            //         allNotifications[i]["post_id"]) {
+            //       notifyCRUD.updateNotificationDetails(
+            //           [allNotifications[i]["notify_id"]]);
 
-                  databaseReference
-                      .child("hysweb")
-                      .child("social")
-                      .child("jump_to_listview_index")
-                      .update({"$_currentUserId": j});
-                  databaseReference
-                      .child("hysweb")
-                      .child("app_bar_navigation")
-                      .child(FirebaseAuth.instance.currentUser!.uid)
-                      .update({"$_currentUserId": 1});
-                  break;
-                }
-              }
-            }
+            //       databaseReference
+            //           .child("hysweb")
+            //           .child("social")
+            //           .child("jump_to_listview_index")
+            //           .update({"$_currentUserId": j});
+            //       databaseReference
+            //           .child("hysweb")
+            //           .child("app_bar_navigation")
+            //           .child(FirebaseAuth.instance.currentUser!.uid)
+            //           .update({"$_currentUserId": 1});
+            //       break;
+            //     }
+            //   }
+            // }
           },
           child: Container(
             width: _width! > 750 ? 700 : _width! - 30,
@@ -461,10 +461,10 @@ class _AllNotificationsState extends State<AllNotifications>
                                               ),
                                             ),
                                             onPressed: () async {
-                                              notifyCRUD
-                                                  .updateNotificationDetails([
-                                                allNotifications[i]["notify_id"]
-                                              ]);
+                                              // notifyCRUD
+                                              //     .updateNotificationDetails([
+                                              //   allNotifications[i]["notify_id"]
+                                              // ]);
                                               for (int k = 0;
                                                   k <
                                                       allConnections!
@@ -582,10 +582,10 @@ class _AllNotificationsState extends State<AllNotifications>
                                                               .docs[k].id);
                                                 }
                                               }
-                                              notifyCRUD
-                                                  .deleteNotificationDetails([
-                                                allNotifications[i]["notify_id"]
-                                              ]);
+                                              // notifyCRUD
+                                              //     .deleteNotificationDetails([
+                                              //   allNotifications[i]["notify_id"]
+                                              // ]);
                                               _get_allNotifications();
                                             }),
                                       ),

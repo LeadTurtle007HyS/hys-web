@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:HyS/providers/answer_provider.dart';
 import 'package:HyS/widgets/bottombarforsmallscreen.dart';
 import 'package:HyS/widgets/large_screen.dart';
 import 'package:HyS/widgets/medilum_screen.dart';
@@ -19,6 +20,7 @@ import 'constants/constants.dart';
 import 'constants/style.dart';
 import 'database/crud.dart';
 import 'helpers/responsiveness.dart';
+import 'models/network_request_genric.dart';
 import 'providers/profileProvider.dart';
 import 'providers/question_provider.dart';
 
@@ -66,7 +68,9 @@ class _SiteLayoutState extends State<SiteLayout> {
 
     QuestionProviders questionProvider =
         Provider.of<QuestionProviders>(context, listen: false);
+
     questionProvider.fetchQuestionList(_currentUserId);
+
     crudobj
         .getSubjectListSingleGradeWise((userDataDB!.get("grade")).toString(),
             "Central Board of Secondary Education (CBSE)")
@@ -106,6 +110,7 @@ class _SiteLayoutState extends State<SiteLayout> {
         }
       });
     });
+
     super.initState();
   }
 

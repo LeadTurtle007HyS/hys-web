@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:HyS/pages/authentication/authentication.dart';
 import 'package:HyS/pages/livebook_code/liveBookOpen.dart';
+import 'package:HyS/providers/answer_provider.dart';
 import 'package:HyS/providers/profileProvider.dart';
 import 'package:HyS/providers/qReaction_provider.dart';
 import 'package:HyS/providers/question_provider.dart';
@@ -149,9 +150,9 @@ void main() async {
         // ChangeNotifierProvider(
         //   create: (_) => AnswerCommentProvider(),
         // ),
-        // ChangeNotifierProvider(
-        //   create: (_) => AnswerProvider(),
-        // ),
+        ChangeNotifierProvider(
+          create: (_) => AnswerProvider(),
+        ),
         // ChangeNotifierProvider(
         //   create: (_) => AnsReplyProvider(),
         // ),

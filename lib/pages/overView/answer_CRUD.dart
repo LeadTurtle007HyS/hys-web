@@ -1,76 +1,20 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
+import 'package:path/path.dart' as Path;
 
 import '../../constants/constants.dart';
 
-class DataLoadCRUD {
-  Future<bool> postUserQuestionData(List data) async {
-    print(data);
-    final http.Response response = await http.post(
-      Uri.parse(Constant.BASE_URL + 'add_user_question_details'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(<String, dynamic>{
-        "question_id": data[0],
-        "user_id": data[1],
-        "answer_count": data[2],
-        "answer_preference": data[3],
-        "audio_reference": data[4],
-        "call_date": data[5],
-        "call_end_time": data[6],
-        "call_now": data[7],
-        "call_preferred_lang": data[8],
-        "call_start_time": data[9],
-        "answer_credit": data[10],
-        "question_credit": data[11],
-        "view_count": data[12],
-        "examlikelyhood_count": data[13],
-        "grade": data[14],
-        "like_count": data[15],
-        "note_reference": data[16],
-        "ocr_image": data[17],
-        "compare_date": data[18],
-        "question": data[19],
-        "question_type": data[20],
-        "is_identity_visible": data[21],
-        "subject": data[22],
-        "topic": data[23],
-        "text_reference": data[24],
-        "toughness_count": data[25],
-        "video_reference": data[26],
-        "impression_count": data[27]
-      }),
-    );
+String current_date = DateFormat.yMMMMd('en_US').format(DateTime.now());
+String comparedate = DateFormat('yyyyMMddkkmm').format(DateTime.now());
+String _currentUserId = FirebaseAuth.instance.currentUser!.uid;
 
-    print(response.statusCode);
-
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future<void> postUsertaggedInQuestionData(List data) async {
-    print(data);
-    final http.Response response = await http.post(
-      Uri.parse(
-          'https://hys-api.herokuapp.com/web_add_users_tagged_in_question'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(
-          <String, dynamic>{"question_id": data[0], "user_id": data[1]}),
-    );
-
-    print(response.statusCode);
-
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {}
-  }
-
+class AnswerCRUD {
   Future<bool> postUserAnswerData(List data) async {
     print(data);
     final http.Response response = await http.post(
@@ -322,88 +266,6 @@ class DataLoadCRUD {
         "compare_date": data[8],
         "image": data[9]
       }),
-    );
-    print(response.statusCode);
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future<bool> addQuestionSaved(List data) async {
-    print(data);
-    final http.Response response = await http.post(
-      Uri.parse(Constant.BASE_URL + 'add_question_saved_details'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(<String, dynamic>{
-        "user_id": data[0],
-        "question_id": data[1],
-        "compare_date": data[2]
-      }),
-    );
-    print(response.statusCode);
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future<bool> deleteQuestionSaved(List data) async {
-    print(data);
-    final http.Response response = await http.post(
-      Uri.parse(Constant.BASE_URL + 'delete_question_saved_details'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(
-          <String, dynamic>{"user_id": data[0], "question_id": data[1]}),
-    );
-    print(response.statusCode);
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future<bool> addQuestionBookmarked(List data) async {
-    print(data);
-    final http.Response response = await http.post(
-      Uri.parse(Constant.BASE_URL + 'add_question_bookmarked_details'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(<String, dynamic>{
-        "user_id": data[0],
-        "question_id": data[1],
-        "compare_date": data[2]
-      }),
-    );
-    print(response.statusCode);
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future<bool> deleteQuestionBookmarked(List data) async {
-    print(data);
-    final http.Response response = await http.post(
-      Uri.parse(Constant.BASE_URL + 'delete_question_bookmarked_details'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        "Access-Control_Allow_Origin": "*"
-      },
-      body: jsonEncode(
-          <String, dynamic>{"user_id": data[0], "question_id": data[1]}),
     );
     print(response.statusCode);
     if ((response.statusCode == 200) || (response.statusCode == 201)) {
